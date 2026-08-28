@@ -1119,6 +1119,34 @@
       },
       "monitored": true,
       "saved_at": "2026-08-28T14:41:04.978Z"
+    },
+    {
+      "id": "cand-rdohuo-2",
+      "title": "UCLA Hearst Metrotone Newsreel Preservation Master",
+      "source_name": "UCLA Film & Television Archive",
+      "source_url": "https://www.cinema.ucla.edu/collections/hearst",
+      "thumbnail_url": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80",
+      "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "price": "$0.00 (Public Domain)",
+      "price_numeric": 0,
+      "license_scope": "Public Domain (Free Cultural Work)",
+      "resolution": "1080p HD (Archival Telecine)",
+      "color_profile": "Nitrate 35mm B&W",
+      "era": "1930s-1960s",
+      "duration": "02:30",
+      "timecode_in": "00:00:15:00",
+      "timecode_out": "00:01:00:00",
+      "pd_claim": "verified",
+      "relevance_score": 0.94,
+      "notes": "UCLA Film & Television Archive 35mm nitrate restoration of historic Hearst Metrotone newsreel series.",
+      "clearance_details": {
+        "provenance": "Archival repository: UCLA Film & Television Archive",
+        "copyright_status": "Statutory Public Domain",
+        "eo_risk_rating": "LOW (Statutory Public Domain)",
+        "commercial_readiness": "100% Cleared for Worldwide Theatrical & Streaming"
+      },
+      "monitored": true,
+      "saved_at": "2026-08-28T16:16:26.641Z"
     }
   ],
   "monitoredClips": [
@@ -2689,7 +2717,47 @@
           "message": "Parallel Monitor scan verified: Rights status active, zero clearance disputes detected on https://catalog.archives.gov/id/1154823"
         }
       ]
+    },
+    {
+      "id": "mon-1787933786642-jn4fu",
+      "candidate_id": "cand-rdohuo-2",
+      "title": "UCLA Hearst Metrotone Newsreel Preservation Master",
+      "source_url": "https://www.cinema.ucla.edu/collections/hearst",
+      "source_name": "UCLA Film & Television Archive",
+      "initial_price": "$0.00 (Public Domain)",
+      "current_price": "$0.00 (Public Domain)",
+      "watch_for": "Price or availability change",
+      "status": "active",
+      "last_checked_at": "2026-08-28T16:16:26.642Z",
+      "change_history": [
+        {
+          "timestamp": "2026-08-28T16:16:26.642Z",
+          "message": "Parallel Monitor task registered for URL: https://www.cinema.ucla.edu/collections/hearst"
+        }
+      ]
+    },
+    {
+      "id": "mon-1787933786672-dzc3h",
+      "candidate_id": "cand-rdohuo-2",
+      "title": "UCLA Hearst Metrotone Newsreel Preservation Master",
+      "source_url": "https://www.cinema.ucla.edu/collections/hearst",
+      "source_name": "UCLA Film & Television Archive",
+      "initial_price": "$0.00 (Public Domain)",
+      "current_price": "$0.00 (Public Domain)",
+      "watch_for": "Price discount or license scope alteration",
+      "status": "active",
+      "last_checked_at": "2026-08-28T16:16:26.677Z",
+      "change_history": [
+        {
+          "timestamp": "2026-08-28T16:16:26.672Z",
+          "message": "Parallel Monitor task registered for URL: https://www.cinema.ucla.edu/collections/hearst"
+        },
+        {
+          "timestamp": "2026-08-28T16:16:26.677Z",
+          "message": "Parallel Monitor scan verified: Rights status active, zero clearance disputes detected on https://www.cinema.ucla.edu/collections/hearst"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-08-28T14:41:05.006Z"
+  "updatedAt": "2026-08-28T16:16:26.677Z"
 }

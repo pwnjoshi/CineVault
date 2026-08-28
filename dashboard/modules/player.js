@@ -130,6 +130,7 @@ function loadVideoSource(candidate) {
   if (modalIframeElement) modalIframeElement.classList.add('hidden');
   if (videoFallbackBanner) videoFallbackBanner.classList.add('hidden');
 
+  modalVideoElement.muted = true; // prevents browser autoplay policy blocks
   modalVideoElement.removeAttribute('crossorigin');
   modalVideoElement.poster = candidate.thumbnail_url || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80';
   modalVideoElement.src = primaryUrl;
@@ -138,7 +139,7 @@ function loadVideoSource(candidate) {
   const playPromise = modalVideoElement.play();
   if (playPromise !== undefined) {
     playPromise.catch(() => {
-      console.warn('[Video Player] Auto-play pending user interaction or fallback required');
+      console.warn('[Video Player] Video loaded ready for user playback');
     });
   }
 

@@ -428,13 +428,16 @@ export class GeminiAgentClient {
       const era = eraMatch ? eraMatch[0] : (raw.heading.match(/\b(19\d{2}s?)\b/i)?.[0] || 'Historical');
 
       // Visual query for this scene
-      const visualPrompt = `${raw.heading} ${raw.text}`.slice(0, 100);
+      const visualPrompt = `${raw.heading} ${raw.text}`.trim().slice(0, 100);
 
       // Concurrently source archival clips for this scene
       let matchedCandidates: Candidate[] = [];
       try {
         const searchRes = await this.orchestrateShotSearch(visualPrompt, { era });
-        matchedCandidates = searchRes.candidates.slice(0, 3);
+        matchedCandidates = searchRes.candidates.slice(0, 3).map((c, cIdx) => ({
+          ...c,
+          id: `scene_${i + 1}_cand_${cIdx + 1}_${c.id || Math.random().toString(36).substring(2, 7)}`
+        }));
       } catch {
         matchedCandidates = [];
       }
