@@ -37,6 +37,14 @@ export function initScriptTimelineModule() {
       const input = document.getElementById('screenplay-input');
       if (input) {
         input.value = `SCENE 1: INT. DETROIT AUTOMOTIVE PLANT - 1962 - DAY\nMassive hydraulic stamping presses pound raw steel. Machinists install V8 engine blocks along the assembly line.\n\nSCENE 2: EXT. HIGHWAY OVERPASS - 1965 - DAY\nClassic vintage automobiles cruise along interstate highway lanes in 1960s Technicolor.`;
+  const spotlightAudioBtn = document.getElementById('spotlight-audio-btn');
+  if (spotlightAudioBtn) {
+    spotlightAudioBtn.addEventListener('click', () => {
+      const scriptTab = document.querySelector('.tab-btn[data-tab="script-timeline"]');
+      if (scriptTab) scriptTab.click();
+      const input = document.getElementById('screenplay-input');
+      if (input) {
+        input.value = `[AUDIO NARRATION - GOOGLE CLOUD SPEECH SYNCHRONIZER]\n"NARRATOR (V.O.): In July 1969, three astronauts rode a Saturn V rocket into history. Across the globe, half a billion people watched silent 70mm monitors as mankind took its first steps on another world."`;
       }
       executeScriptToTimeline();
     });
