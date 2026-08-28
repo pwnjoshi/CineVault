@@ -209,14 +209,36 @@ body.light-theme .tab-btn.active {
   border-bottom-color: #EE5F29 !important;
 }
 
+body.light-theme .profile-btn {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.light-theme .profile-name {
+  color: #0f172a !important;
+}
+
 body.light-theme .profile-dropdown-menu {
   background-color: #ffffff !important;
   border-color: rgba(0, 0, 0, 0.12) !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
 }
 
+body.light-theme .profile-dropdown-header {
+  background-color: #f8fafc !important;
+}
+
 body.light-theme .profile-dropdown-header strong {
   color: #0f172a !important;
+}
+
+body.light-theme .profile-dropdown-header span {
+  color: #64748b !important;
+}
+
+body.light-theme .profile-dropdown-footer {
+  background-color: #f1f5f9 !important;
 }
 
 body.light-theme .code-block {

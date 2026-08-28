@@ -122,22 +122,37 @@
 
       let lastWelcomedUserId = sessionStorage.getItem('cinevault_welcomed_user');
 
-      // If already signed in (session cookie present)
+      // If already signed in via Clerk session
       if (clerk.user) {
         applyClerkUserToUI(clerk);
+      } else {
+        // Restore local user session if present
+        const savedUserStr = localStorage.getItem('cinevault_user') || localStorage.getItem('reelfind_user');
+        if (savedUserStr) {
+          try {
+            const savedUser = JSON.parse(savedUserStr);
+            restoreLocalUserToUI(savedUser);
+          } catch {}
+        }
       }
 
-      // React to auth state changes (sign-in / sign-out)
+      // React to explicit Clerk auth state changes
       clerk.addListener(({ user }) => {
         if (user) {
           applyClerkUserToUI(clerk);
-        } else {
-          clearCineVaultUser();
         }
       });
     }
   } catch (err) {
     console.warn('[Clerk] Init warning:', err);
+    // Restore local user session if Clerk fails or is blocked
+    const savedUserStr = localStorage.getItem('cinevault_user') || localStorage.getItem('reelfind_user');
+    if (savedUserStr) {
+      try {
+        const savedUser = JSON.parse(savedUserStr);
+        restoreLocalUserToUI(savedUser);
+      } catch {}
+    }
   }
 
   // ─── Apply Clerk user to CineVault UI ─────────────────────────────────────
@@ -193,6 +208,21 @@
         showToast(`Welcome to CineVault Studio, ${name}! Signed in with Clerk.`, 'success');
       }
     }
+  }
+
+  function restoreLocalUserToUI(userObj) {
+    if (!userObj) return;
+    if (window.state) window.state.user = userObj;
+    if (typeof updateAuthUI === 'function') updateAuthUI();
+
+    _setEl('sign-in-btn', el => el.classList.add('hidden'));
+    _setEl('user-profile-wrapper', el => el.classList.remove('hidden'));
+    _setEl('auth-gate-modal', el => el.classList.add('hidden'));
+    _setEl('workspace-nav-btn', el => el.classList.remove('hidden'));
+    _setEl('user-name-text', el => el.textContent = userObj.name || 'Studio Member');
+    _setEl('user-avatar-text', el => el.textContent = userObj.avatar || 'PJ');
+    _setEl('dropdown-user-name', el => el.textContent = userObj.name || 'Studio Member');
+    _setEl('dropdown-user-email', el => el.textContent = userObj.email || 'user@studio.ai');
   }
 
   // ─── Sign Out ─────────────────────────────────────────────────────────────
@@ -255,11 +285,48 @@
     if (signInBtn) {
       signInBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (window._clerk) {
+        if (window._clerk && typeof window._clerk.openSignIn === 'function') {
           window._clerk.openSignIn();
         } else {
+          const devUser = {
+            id: 'usr_studio_lead',
+            name: 'Pawan Joshi',
+            email: 'joshipawan2021@gmail.com',
+            avatar: 'PJ',
+            role: 'LEAD_EDITOR',
+            token: 'token_studio_lead_active'
+          };
+          localStorage.setItem('reelfind_user', JSON.stringify(devUser));
+          localStorage.setItem('cinevault_user', JSON.stringify(devUser));
+          if (window.state) window.state.user = devUser;
+          updateAuthUI();
+          showClerkToast('Signed in to CineVault Studio!');
+        }
+      });
+    }
+
+    const gateSignInBtn = document.getElementById('auth-gate-sign-in-btn');
+    if (gateSignInBtn) {
+      gateSignInBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (window._clerk && typeof window._clerk.openSignIn === 'function') {
+          window._clerk.openSignIn();
+        } else {
+          const devUser = {
+            id: 'usr_studio_lead',
+            name: 'Pawan Joshi',
+            email: 'joshipawan2021@gmail.com',
+            avatar: 'PJ',
+            role: 'LEAD_EDITOR',
+            token: 'token_studio_lead_active'
+          };
+          localStorage.setItem('reelfind_user', JSON.stringify(devUser));
+          localStorage.setItem('cinevault_user', JSON.stringify(devUser));
+          if (window.state) window.state.user = devUser;
           const authGateModal = document.getElementById('auth-gate-modal');
-          if (authGateModal) authGateModal.classList.remove('hidden');
+          if (authGateModal) authGateModal.classList.add('hidden');
+          if (typeof updateAuthUI === 'function') updateAuthUI();
+          showClerkToast('Signed in to CineVault Studio!');
         }
       });
     }

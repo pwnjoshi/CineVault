@@ -170,14 +170,31 @@
               </div>
             </form>
 
-            <!-- Quick Modifiers & Presets -->
+            <!-- Quick Modifiers & Presets + Parallel Performance Mode Selector -->
+            <div class="director-toolbar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <span class="toolbar-label">Add Cues:</span>
+                <div class="modifier-chips" id="director-chips" style="display: inline-flex; gap: 4px;">
+                  <button type="button" class="chip" data-append=", 16mm film grain">+ 16mm Grain</button>
+                  <button type="button" class="chip" data-append=", black and white">+ B&W</button>
+                  <button type="button" class="chip" data-append=", tracking shot">+ Tracking Shot</button>
+                  <button type="button" class="chip" data-append=", authentic newsreel">+ Newsreel</button>
+                </div>
+              </div>
+
+              <!-- Parallel Mode Selector (George Pickett Workshop Specification) -->
+              <div style="display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px;">
+                <span style="color: #a78bfa; font-weight: 700;">⚡ Parallel Mode:</span>
+                <select id="parallel-mode-select" style="background: var(--bg-surface); color: var(--text-primary); border: 1px solid rgba(124, 58, 237, 0.4); border-radius: var(--radius-sm); padding: 3px 8px; font-size: 11px; font-family: var(--font-mono); cursor: pointer; outline: none;">
+                  <option value="fast" selected>Fast Grounding (700ms p50)</option>
+                  <option value="turbo">Turbo Low-Latency (200ms)</option>
+                  <option value="advanced">Advanced Deep Audit</option>
+                </select>
+              </div>
+            </div>
+            
             <div class="director-toolbar">
-              <span class="toolbar-label">Add Cues:</span>
-              <div class="modifier-chips" id="director-chips">
-                <button type="button" class="chip" data-append=", 16mm film grain">+ 16mm Grain</button>
-                <button type="button" class="chip" data-append=", black and white">+ B&W</button>
-                <button type="button" class="chip" data-append=", tracking shot">+ Tracking Shot</button>
-                <button type="button" class="chip" data-append=", authentic newsreel">+ Newsreel</button>
+              <div class="modifier-chips">
                 <button type="button" class="chip" data-append=", 35mm Technicolor">+ Technicolor</button>
                 <button type="button" class="chip" id="toggle-moodboard-btn" style="border-color: rgba(238, 95, 41, 0.45); color: #EE5F29;">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:3px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>

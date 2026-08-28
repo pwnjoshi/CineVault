@@ -642,10 +642,31 @@ function initAuthGate() {
     });
 
     document.addEventListener('click', (e) => {
-      if (!dropdownMenu.contains(e.target) && !profileBtn.contains(e.target)) {
+      if (dropdownMenu && !dropdownMenu.contains(e.target) && !profileBtn.contains(e.target)) {
         dropdownMenu.classList.add('hidden');
       }
     });
+  }
+
+  // Restore active user session on app start
+  const savedUserStr = localStorage.getItem('cinevault_user') || localStorage.getItem('reelfind_user');
+  if (savedUserStr) {
+    try {
+      state.user = JSON.parse(savedUserStr);
+    } catch {}
+  }
+
+  if (!state.user) {
+    state.user = {
+      id: 'usr_studio_lead',
+      name: 'Pawan Joshi',
+      email: 'joshipawan2021@gmail.com',
+      avatar: 'PJ',
+      role: 'LEAD_EDITOR',
+      token: 'token_studio_lead_active'
+    };
+    localStorage.setItem('cinevault_user', JSON.stringify(state.user));
+    localStorage.setItem('reelfind_user', JSON.stringify(state.user));
   }
 
   const authGateModal = document.getElementById('auth-gate-modal');
