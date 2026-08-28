@@ -203,6 +203,18 @@ export function selectCandidateForInspector(candidate) {
   const sidebar = document.getElementById('inspector-sidebar');
   const pdTag = document.getElementById('sidebar-pd-tag');
   const detailsContent = document.getElementById('sidebar-details-content');
+  const closeBtn = document.getElementById('close-inspector-sidebar-btn');
+
+  if (sidebar) {
+    sidebar.classList.remove('hidden');
+  }
+
+  if (closeBtn && !closeBtn._bound) {
+    closeBtn._bound = true;
+    closeBtn.addEventListener('click', () => {
+      if (sidebar) sidebar.classList.add('hidden');
+    });
+  }
 
   if (pdTag) {
     pdTag.textContent = candidate.pd_claim === 'verified' ? 'Verified PD' : (candidate.pd_claim === 'unverified' ? 'Unverified Claim' : 'Commercial Clearance');

@@ -138,6 +138,27 @@ body.light-theme .testimonial-quote {
   color: #334155 !important;
 }
 
+body.light-theme .tab-item {
+  color: #475569 !important;
+}
+
+body.light-theme .tab-item:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+body.light-theme .tab-item.active {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+body.light-theme .tab-item .badge {
+  background-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
 body.light-theme .faq-question {
   color: #0f172a !important;
 }

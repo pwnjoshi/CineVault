@@ -22,6 +22,7 @@ window.closeVideoPlayerModal = closeVideoPlayerModal;
 window.addToShortlist = addToShortlist;
 window.removeFromShortlist = removeFromShortlist;
 window.openClearanceReportModal = openClearanceReportModal;
+window.executeSearch = executeSearch;
 
 function initApp() {
   console.log('[CineVault Studio] Initializing Workspace Modules & Handlers...');
