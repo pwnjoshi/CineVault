@@ -218,12 +218,13 @@
 
     if (profileBtn && dropdownMenu) {
       profileBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
         dropdownMenu.classList.toggle('hidden');
       });
 
       document.addEventListener('click', (e) => {
-        if (!dropdownMenu.contains(e.target) && !profileBtn.contains(e.target)) {
+        if (dropdownMenu && !dropdownMenu.contains(e.target) && !profileBtn.contains(e.target)) {
           dropdownMenu.classList.add('hidden');
         }
       });
@@ -231,6 +232,7 @@
 
     if (signOutBtn) {
       signOutBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
         e.stopPropagation();
         if (dropdownMenu) dropdownMenu.classList.add('hidden');
         if (window._clerk) {
@@ -243,12 +245,16 @@
         clearCineVaultUser();
         if (typeof showToast === 'function') {
           showToast('Signed out of CineVault Studio', 'info');
+        } else {
+          alert('Signed out of CineVault Studio');
         }
+        window.location.reload();
       });
     }
 
     if (signInBtn) {
-      signInBtn.addEventListener('click', () => {
+      signInBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         if (window._clerk) {
           window._clerk.openSignIn();
         } else {
