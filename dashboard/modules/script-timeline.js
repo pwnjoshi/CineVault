@@ -49,6 +49,14 @@ export function initScriptTimelineModule() {
       executeScriptToTimeline();
     });
   }
+
+  const spotlightLutBtn = document.getElementById('spotlight-lut-export-btn');
+  if (spotlightLutBtn) {
+    spotlightLutBtn.addEventListener('click', () => {
+      showToast('Generating Technicolor 35mm 3D LUT (.cube)...', 'info');
+      window.location.href = getApiUrl('/api/lut-generator/generate?film_stock=1960s%20Technicolor%2035mm&format=cube');
+    });
+  }
 }
 
 export async function executeScriptToTimeline() {
