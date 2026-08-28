@@ -54,8 +54,9 @@ function initApp() {
     if (shotInput) {
       shotInput.value = cleanQuery;
     }
-    // Execute live search immediately with query from URL
-    executeSearch();
+    state.currentQuery = cleanQuery;
+    // Execute search immediately with query
+    executeSearch(cleanQuery);
   } else {
     // Default initial render
     if (!state.candidates || state.candidates.length === 0) {
@@ -95,16 +96,24 @@ function initSearchController() {
     });
   }
 
-  // Filter dropdown listeners
-  document.querySelectorAll('.filter-select').forEach(select => {
-    select.addEventListener('change', () => {
-      const filterKey = select.getAttribute('data-filter');
-      if (filterKey) {
-        state.filters[filterKey] = select.value;
-        executeSearch();
-      }
-    });
-  });
+  // Filter dropdown listeners (#filter-era, #filter-rights, #filter-color, #filter-price)
+  const eraSelect = document.getElementById('filter-era');
+  const rightsSelect = document.getElementById('filter-rights');
+  const colorSelect = document.getElementById('filter-color');
+  const priceSelect = document.getElementById('filter-price');
+
+  const onFilterChange = () => {
+    if (eraSelect) state.filters.era = eraSelect.value;
+    if (rightsSelect) state.filters.rights = rightsSelect.value;
+    if (colorSelect) state.filters.color = colorSelect.value;
+    if (priceSelect) state.filters.maxPrice = priceSelect.value;
+    executeSearch();
+  };
+
+  if (eraSelect) eraSelect.addEventListener('change', onFilterChange);
+  if (rightsSelect) rightsSelect.addEventListener('change', onFilterChange);
+  if (colorSelect) colorSelect.addEventListener('change', onFilterChange);
+  if (priceSelect) priceSelect.addEventListener('change', onFilterChange);
 
   // Toggle Live Pipeline Steps (Hide Steps / Show Steps)
   const togglePipelineBtn = document.getElementById('toggle-pipeline-btn');
@@ -150,12 +159,20 @@ function initDirectorChipsAndPresets() {
   });
 }
 
-async function executeSearch() {
+async function executeSearch(explicitQuery) {
   const shotQueryInput = document.getElementById('shot-query-input');
   const searchBtn = document.getElementById('search-btn') || document.getElementById('search-submit-btn');
-  if (!shotQueryInput || !shotQueryInput.value.trim() || state.isLoading) return;
+  
+  let query = (explicitQuery || (shotQueryInput ? shotQueryInput.value : '') || new URLSearchParams(window.location.search).get('q') || '').trim();
+  if (!query && state.currentQuery) query = state.currentQuery;
+  
+  if (!query) {
+    query = 'Apollo 11 Saturn V launch NASA 70mm';
+  }
 
-  const query = shotQueryInput.value.trim();
+  if (shotQueryInput) {
+    shotQueryInput.value = query;
+  }
   state.currentQuery = query;
   state.isLoading = true;
 
