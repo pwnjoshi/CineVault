@@ -169,6 +169,18 @@ async function runComprehensiveAudit() {
   } catch (e) {
     assert(false, 'API: Visual Moodboard', e.message);
   }
+  // 9. Audit Google Cloud Video Intelligence & Telecine OCR Analysis
+  try {
+    const viRes = await fetch('http://localhost:4000/api/video-intelligence/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clip_id: 'clip_apollo11', source_url: 'https://catalog.archives.gov/id/1154823' })
+    });
+    const viJson = await viRes.json();
+    assert(viJson.success === true && viJson.data?.shots?.length >= 1 && !!viJson.data?.gcs_cache?.gcs_proxy_url, 'API: Google Cloud Video Intelligence & Optical OCR Telecine Analysis');
+  } catch (e) {
+    assert(false, 'API: Video Intelligence', e.message);
+  }
 
   console.log('\n=====================================================');
   console.log(`  AUDIT RESULT: ${passed} / ${total} CHECKS PASSED (${Math.round(passed / total * 100)}%)`);
