@@ -119,53 +119,21 @@ function findStaticDir(dirName: string): string {
   return path.join(__dirname, '..', dirName);
 }
 
-const dashboardPath = findStaticDir('dashboard');
+const publicPath = findStaticDir('public');
 const premierePanelPath = findStaticDir('premiere-panel');
 
-console.log(`[Static] Dashboard resolved to: ${dashboardPath}`);
+console.log(`[Static] Public assets resolved to: ${publicPath}`);
 console.log(`[Static] Premiere Panel resolved to: ${premierePanelPath}`);
 
 // Favicon Handler
 app.get(['/favicon.ico', '/favicon.svg'], (req, res) => {
-  const favPath = path.join(dashboardPath, 'favicon.svg');
+  const favPath = path.join(publicPath, 'favicon.svg');
   if (fs.existsSync(favPath)) {
     res.setHeader('Content-Type', 'image/svg+xml');
     return res.sendFile(favPath);
   }
   return res.status(204).end();
 });
-
-// Public Landing Page
-app.get('/', (req, res) => {
-  const landingPath = path.join(dashboardPath, 'landing.html');
-  if (fs.existsSync(landingPath)) {
-    return res.sendFile(landingPath);
-  }
-  return res.sendFile(path.join(dashboardPath, 'index.html'));
-});
-
-// Documentation Page
-app.get('/docs', (req, res) => {
-  const docsPath = path.join(dashboardPath, 'docs.html');
-  if (fs.existsSync(docsPath)) {
-    return res.sendFile(docsPath);
-  }
-  return res.status(404).send('Documentation docs.html not found');
-});
-
-// Studio Web Dashboard
-app.get('/dashboard', (req, res) => {
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Expires', '0');
-  const indexPath = path.join(dashboardPath, 'index.html');
-  if (fs.existsSync(indexPath)) {
-    return res.sendFile(indexPath);
-  }
-  return res.status(404).send('Dashboard index.html not found');
-});
-
-
 
 // Serve Premiere Panel static files (no-cache so edits always show immediately)
 app.use('/premiere', express.static(premierePanelPath, {
@@ -176,8 +144,8 @@ app.use('/premiere', express.static(premierePanelPath, {
   }
 }));
 
-// Serve Dashboard static assets (no-cache)
-app.use(express.static(dashboardPath, {
+// Serve Public static assets (no-cache)
+app.use(express.static(publicPath, {
   setHeaders: (res) => {
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.setHeader('Pragma', 'no-cache');
@@ -190,16 +158,26 @@ app.get(['/health', '/api/health'], (req, res) => {
   res.status(200).json({ status: 'ok', time: new Date().toISOString() });
 });
 
-// Catch-all for SPA dashboard
-app.get('*', (req, res) => {
-  if (req.path.startsWith('/api')) {
-    return res.status(404).json({ error: 'Endpoint not found' });
-  }
-  const indexPath = path.join(dashboardPath, 'index.html');
-  if (fs.existsSync(indexPath)) {
-    return res.sendFile(indexPath);
-  }
-  return res.status(404).send(`Dashboard index.html not found at ${indexPath}`);
+// Catch-all for API 404
+app.get('/api/*', (req, res) => {
+  res.status(404).json({ error: 'API endpoint not found' });
+});
+
+// Root & Dashboard redirect or status
+app.get(['/', '/dashboard'], (req, res) => {
+  res.status(200).json({
+    service: 'CineVault Studio API & Agent Engine',
+    frontend: 'Next.js App Router',
+    status: 'online',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      search: '/api/search-footage',
+      script: '/api/script-to-timeline',
+      shortlist: '/api/shortlist',
+      premiere: '/premiere/'
+    }
+  });
 });
 
 // Error handling middleware

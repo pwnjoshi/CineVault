@@ -14,7 +14,7 @@ COPY package*.json ./
 COPY server/package*.json ./server/
 RUN cd server && npm install --only=production
 COPY --from=builder /app/server/dist ./server/dist
-COPY --from=builder /app/dashboard ./dashboard
+COPY --from=builder /app/public ./public
 COPY --from=builder /app/premiere-panel ./premiere-panel
 EXPOSE 4000
 CMD ["node", "server/dist/index.js"]
