@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server/index.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dashboard/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "premiere-panel/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/server/index.ts" },
+    { "src": "/health", "dest": "/server/index.ts" },
+    { "src": "/premiere/(.*)", "dest": "/premiere-panel/$1" },
+    { "src": "/premiere", "dest": "/premiere-panel/index.html" },
+    { "src": "/docs", "dest": "/dashboard/docs.html" },
+    { "src": "/dashboard", "dest": "/dashboard/index.html" },
+    { "src": "/(.*)", "dest": "/dashboard/$1" }
+  ]
+}

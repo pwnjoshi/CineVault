@@ -1,0 +1,51 @@
+{
+  "id": "com.cinevault.premiere.panel",
+  "name": "CineVault Footage Finder",
+  "version": "1.0.0",
+  "main": "index.html",
+  "manifestVersion": 5,
+  "host": [
+    {
+      "app": "PPRO",
+      "minVersion": "22.0.0"
+    }
+  ],
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "cinevaultPanel",
+      "label": {
+        "default": "CineVault Footage Finder"
+      },
+      "minimumSize": {
+        "width": 320,
+        "height": 450
+      },
+      "maximumSize": {
+        "width": 800,
+        "height": 1200
+      },
+      "preferredDockedSize": {
+        "width": 380,
+        "height": 650
+      },
+      "icons": [
+        {
+          "width": 23,
+          "height": 23,
+          "path": "icons/icon-23.png"
+        }
+      ]
+    }
+  ],
+  "permissions": {
+    "network": {
+      "domains": "all"
+    },
+    "clipboard": "readAndWrite",
+    "localFileSystem": "fullAccess"
+  },
+  "featureFlags": {
+    "enableSWCSupport": true
+  }
+}

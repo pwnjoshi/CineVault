@@ -1,0 +1,16 @@
+services:
+ - type: web
+ name: cinevault-studio
+ env: node
+ plan: free
+ buildCommand: cd server && npm install && npm run build
+ startCommand: node server/dist/index.js
+ envVars:
+ - key: PORT
+ value: 4000
+ - key: NODE_ENV
+ value: production
+ - key: CLERK_PUBLISHABLE_KEY
+ value: pk_test_ZmFpci10dXJrZXktNTAyNy5jbGVyay5hY2NvdW50cy5kZXYk
+ - key: GOOGLE_CLOUD_PROJECT_ID
+ value: trustfix-506602

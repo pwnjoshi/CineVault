@@ -1,0 +1,329 @@
+[
+  {
+    "id": "query-factory-1960s",
+    "query": "black-and-white footage of a crowded factory floor, 1960s, USA, industrial machinery and workers",
+    "genre": "Industrial / Historical Documentary",
+    "era": "1960s",
+    "color_profile": "Monochrome (B&W)",
+    "suggested_subqueries": [
+      "1960s American automobile assembly line factory floor black and white archival",
+      "industrial manufacturing workers machinery 1960s 16mm film",
+      "site:archive.org Prelinger Archives factory assembly line 1960s",
+      "site:catalog.archives.gov US industrial production workers 1960s"
+    ],
+    "benchmark_results": [
+      {
+        "id": "cand-ia-prelinger-01",
+        "title": "American Worker & The Machine: Assembly Line Operations (1962)",
+        "source_name": "Prelinger Archives / Internet Archive",
+        "source_url": "https://archive.org/details/AmericanWorkerMachine1962",
+        "thumbnail_url": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+        "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        "embed_url": "https://archive.org/embed/AmericanWorkerMachine1962",
+        "price": "$0.00 (Public Domain)",
+        "price_numeric": 0,
+        "license_scope": "Public Domain Mark 1.0 (Worldwide Free Usage)",
+        "resolution": "1080p 24fps (2K 16mm Scan)",
+        "color_profile": "Monochrome (B&W)",
+        "era": "1960s",
+        "duration": "03:42",
+        "timecode_in": "00:01:14:00",
+        "timecode_out": "00:01:45:12",
+        "pd_claim": "verified",
+        "relevance_score": 0.96,
+        "notes": "Verified institutional source (Prelinger Archives collection). Depicts automated stamping presses and worker shifts in Detroit plant. Direct high-res download available.",
+        "clearance_details": {
+          "provenance": "Prelinger Collection, Library of Congress Motion Picture Division",
+          "copyright_status": "No copyright notice registered; expired under US Copyright Act of 1909",
+          "eo_risk_rating": "LOW (Zero third-party claims on record)",
+          "commercial_readiness": "100% Cleared for Theatrical, Streaming, and Educational"
+        },
+        "monitored": false
+      },
+      {
+        "id": "cand-loc-nara-02",
+        "title": "US Department of Labor: Steel Mill & Manufacturing Shifts (1965)",
+        "source_name": "Library of Congress / National Archives (NARA)",
+        "source_url": "https://catalog.archives.gov/id/1154823",
+        "thumbnail_url": "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80",
+        "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        "embed_url": "https://catalog.archives.gov",
+        "price": "$0.00 (US Gov Work)",
+        "price_numeric": 0,
+        "license_scope": "Public Domain (US Government Work)",
+        "resolution": "4K ProRes 422HQ (35mm Master Scan)",
+        "color_profile": "Monochrome (B&W)",
+        "era": "1960s",
+        "duration": "05:18",
+        "timecode_in": "00:00:22:15",
+        "timecode_out": "00:01:10:00",
+        "pd_claim": "verified",
+        "relevance_score": 0.92,
+        "notes": "Verified US Federal Government work created by agency employees; zero copyright encumbrance in the United States.",
+        "clearance_details": {
+          "provenance": "Record Group 174: General Records of the Department of Labor, National Archives at College Park",
+          "copyright_status": "Public domain by operation of 17 U.S.C. § 105 (U.S. Government works)",
+          "eo_risk_rating": "NONE (Statutory exemption)",
+          "commercial_readiness": "100% Cleared worldwide"
+        },
+        "monitored": true
+      },
+      {
+        "id": "cand-pathe-03",
+        "title": "British Pathé: Automotive Precision Engineering (1964)",
+        "source_name": "British Pathé",
+        "source_url": "https://www.britishpathe.com/asset/1964_factory_floor",
+        "thumbnail_url": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+        "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+        "embed_url": "https://britishpathe.com",
+        "price": "$125.00 / clip",
+        "price_numeric": 125,
+        "license_scope": "Editorial & Commercial Worldwide (Single Production)",
+        "resolution": "1080p HD (Restored 35mm)",
+        "color_profile": "Monochrome (B&W)",
+        "era": "1960s",
+        "duration": "01:54",
+        "timecode_in": "00:00:10:00",
+        "timecode_out": "00:00:45:00",
+        "pd_claim": "not_claimed",
+        "relevance_score": 0.88,
+        "notes": "High-fidelity newsreel footage. Full commercial and documentary indemnity provided with license purchase.",
+        "clearance_details": {
+          "provenance": "British Pathé Newsreel Archive #64/112",
+          "copyright_status": "Owned and administered by British Pathé Ltd.",
+          "eo_risk_rating": "INDEMNIFIED ($1,000,000 corporate warranty included)",
+          "commercial_readiness": "Commercial license required prior to distribution"
+        },
+        "monitored": false
+      },
+      {
+        "id": "cand-retrostock-04",
+        "title": "Vintage Industrial Workshop Machinery 1960s B&W",
+        "source_name": "VintageStockHub (Third-Party Aggregator)",
+        "source_url": "https://vintagestockhub.example.com/item/60s-factory-bw",
+        "thumbnail_url": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+        "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyblazes.mp4",
+        "price": "$29.00",
+        "price_numeric": 29,
+        "license_scope": "Claims 'CC0 Public Domain' on download button",
+        "resolution": "720p H.264",
+        "color_profile": "Monochrome (B&W)",
+        "era": "1960s",
+        "duration": "00:48",
+        "pd_claim": "unverified",
+        "relevance_score": 0.74,
+        "notes": "CAUTION: Unverified PD claim. Aggregator claims CC0 but original corporate film copyright notice may not have lapsed. Recommend licensing from NARA or clearing chain of title before theatrical release.",
+        "clearance_details": {
+          "provenance": "User uploaded to third-party aggregator domain without verifiable institutional deposition",
+          "copyright_status": "UNVERIFIED: Potential underlying industrial corporate copyright",
+          "eo_risk_rating": "HIGH RISK: E&O insurance underwriters will flag this asset",
+          "commercial_readiness": "Legal clearance recommended before commercial distribution"
+        },
+        "monitored": false
+      }
+    ]
+  },
+  {
+    "id": "query-apollo-1969",
+    "query": "Apollo 11 mission control Houston room reaction to Moon landing, July 1969, vintage color 16mm",
+    "genre": "Space / Science Documentary",
+    "era": "1960s",
+    "color_profile": "Vintage Technicolor",
+    "suggested_subqueries": [
+      "Apollo 11 mission control center Houston July 1969 cheer celebration color archival",
+      "NASA Johnson Space Center Apollo 11 landing mission controllers footage",
+      "site:images.nasa.gov Apollo 11 flight control room",
+      "site:catalog.archives.gov NASA Apollo 11 mission control 1969 footage"
+    ],
+    "benchmark_results": [
+      {
+        "id": "cand-nasa-apollo-01",
+        "title": "NASA Apollo 11 Flight Director Console & MOCR Celebrations (July 20, 1969)",
+        "source_name": "NASA Images / National Archives",
+        "source_url": "https://images.nasa.gov/details-Apollo11_MOCR_Celebration",
+        "thumbnail_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+        "price": "$0.00 (NASA Public Record)",
+        "price_numeric": 0,
+        "license_scope": "Public Domain (NASA Educational & Commercial Fair Use)",
+        "resolution": "4K UHD (Master Restored 16mm)",
+        "color_profile": "Vintage Technicolor",
+        "era": "1960s",
+        "duration": "04:12",
+        "timecode_in": "00:02:10:00",
+        "timecode_out": "00:03:05:00",
+        "pd_claim": "verified",
+        "relevance_score": 0.98,
+        "notes": "Verified public domain NASA media. Depicts Gene Kranz and flight controllers waving American flags upon lunar module touchdown.",
+        "clearance_details": {
+          "provenance": "NASA Johnson Space Center Media Archives / NARA Record Group 255",
+          "copyright_status": "Public domain as an official work of the National Aeronautics and Space Administration",
+          "eo_risk_rating": "NONE (US Federal Government Public Record)",
+          "commercial_readiness": "100% Cleared for commercial film, TV, and web"
+        },
+        "monitored": true
+      },
+      {
+        "id": "cand-pond5-apollo-02",
+        "title": "Apollo 11 Mission Control Tension and Applause (Clean 35mm Scan)",
+        "source_name": "Pond5 Archival",
+        "source_url": "https://www.pond5.com/stock-footage/item/apollo-11-control-room-applause",
+        "thumbnail_url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+        "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+        "price": "$85.00 / HD ($199 / 4K)",
+        "price_numeric": 85,
+        "license_scope": "Royalty-Free Worldwide All Media (Includes $250k Indemnity)",
+        "resolution": "4K ProRes 422",
+        "color_profile": "Vintage Technicolor",
+        "era": "1960s",
+        "duration": "01:15",
+        "pd_claim": "not_claimed",
+        "relevance_score": 0.91,
+        "notes": "Remastered telecine transfer from physical NASA print. Includes commercial indemnification protection.",
+        "clearance_details": {
+          "provenance": "Commercial Telecine Digitization Collection",
+          "copyright_status": "Royalty-Free Commercial License from Pond5 Inc.",
+          "eo_risk_rating": "LOW ($250,000 indemnification policy)",
+          "commercial_readiness": "Immediate commercial clearance upon purchase"
+        },
+        "monitored": false
+      }
+    ]
+  },
+  {
+    "id": "query-tokyo-1980s",
+    "query": "1980s neon Tokyo night drive, Shibuya crossing, rainy asphalt reflections, retro vintage aesthetic",
+    "genre": "Music Video / Feature Film Montage",
+    "era": "1970s-1980s",
+    "color_profile": "Full Color (Neon)",
+    "suggested_subqueries": [
+      "1980s Tokyo Japan night street drive neon signs archival footage",
+      "Shibuya Shinjuku neon rain 1980s VHS 35mm Japan night cityscape",
+      "site:pond5.com 1980s Tokyo night neon driving vintage",
+      "site:gettyimages.com Tokyo street traffic night 1980s archival"
+    ],
+    "benchmark_results": [
+      {
+        "id": "cand-getty-tokyo-01",
+        "title": "Night Driving Through Shinjuku & Shibuya Neon Corridors (1986)",
+        "source_name": "Getty Images / Archival Collection",
+        "source_url": "https://www.gettyimages.com/detail/video/tokyo-night-neon-1986",
+        "thumbnail_url": "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80",
+        "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4",
+        "price": "$175.00 / web ($485.00 / film broadcast)",
+        "price_numeric": 175,
+        "license_scope": "Rights-Managed (Worldwide Theatrical & Streaming)",
+        "resolution": "1080p HD (35mm Archival Scan)",
+        "color_profile": "Full Color (Neon)",
+        "era": "1970s-1980s",
+        "duration": "02:10",
+        "timecode_in": "00:00:30:00",
+        "timecode_out": "00:01:25:00",
+        "pd_claim": "not_claimed",
+        "relevance_score": 0.95,
+        "notes": "Pristine 35mm film scan of rain-slicked Tokyo streets with vibrant vintage kanji and katakana neon signage.",
+        "clearance_details": {
+          "provenance": "Getty Images Editorial Film Vault #JP-86-990",
+          "copyright_status": "Rights-Managed Licensing with full model/property release tracking",
+          "eo_risk_rating": "INDEMNIFIED (Standard Getty Images Warranty)",
+          "commercial_readiness": "License tier must match production distribution tier"
+        },
+        "monitored": true
+      },
+      {
+        "id": "cand-ia-tokyo-02",
+        "title": "Travelogue: Tokyo Urban Nightlife and Transit (1984)",
+        "source_name": "Internet Archive / Community Video",
+        "source_url": "https://archive.org/details/tokyo-nightlife-1984",
+        "thumbnail_url": "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=800&q=80",
+        "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+        "price": "Unable to verify (Community Upload)",
+        "price_numeric": null,
+        "license_scope": "Attribution-NonCommercial 3.0",
+        "resolution": "Standard Def 480p VHS Rip",
+        "color_profile": "Full Color (Neon)",
+        "era": "1970s-1980s",
+        "duration": "03:30",
+        "pd_claim": "unverified",
+        "relevance_score": 0.79,
+        "notes": "CAUTION: Community user uploaded VHS broadcast capture. Non-commercial license tagged by uploader, but underlying Japanese TV rights unverified. Commercial risk high.",
+        "clearance_details": {
+          "provenance": "Community upload to Internet Archive; source broadcast unaccredited",
+          "copyright_status": "UNVERIFIED: Potential Japanese terrestrial broadcast copyright and musical background clearance issues",
+          "eo_risk_rating": "HIGH RISK: Non-commercial license does not permit theatrical release",
+          "commercial_readiness": "Not recommended for commercial feature productions"
+        },
+        "monitored": false
+      }
+    ]
+  },
+  {
+    "id": "query-dustbowl-1930s",
+    "query": "Dust Bowl drought Oklahoma farm crisis 1930s, dust storm approaching wooden homestead, Great Depression",
+    "genre": "Period Drama / American History",
+    "era": "1930s-1940s",
+    "color_profile": "Monochrome (B&W)",
+    "suggested_subqueries": [
+      "1930s Dust Bowl black blizzard approaching Oklahoma farm archival film",
+      "Farm Security Administration 1930s Great Depression drought agricultural crisis",
+      "site:loc.gov Dust Bowl 1935 1936 motion pictures",
+      "site:archive.org Plow That Broke The Plains 1936 Pare Lorentz"
+    ],
+    "benchmark_results": [
+      {
+        "id": "cand-loc-dustbowl-01",
+        "title": "The Plow That Broke the Plains (1936) - Resettlement Administration",
+        "source_name": "Library of Congress / National Film Preservation",
+        "source_url": "https://loc.gov/item/mbrcnflm00018349",
+        "thumbnail_url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80",
+        "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "price": "$0.00 (US Government Work)",
+        "price_numeric": 0,
+        "license_scope": "Public Domain (US Government Production)",
+        "resolution": "4K ProRes 422HQ (35mm Master)",
+        "color_profile": "Monochrome (B&W)",
+        "era": "1930s-1940s",
+        "duration": "06:14",
+        "timecode_in": "00:03:15:00",
+        "timecode_out": "00:04:20:00",
+        "pd_claim": "verified",
+        "relevance_score": 0.99,
+        "notes": "Historic documentary directed by Pare Lorentz for the US Resettlement Administration. Unrestricted public domain worldwide.",
+        "clearance_details": {
+          "provenance": "United States Resettlement Administration / Library of Congress National Film Registry",
+          "copyright_status": "Public domain by operation of law (US Government Work)",
+          "eo_risk_rating": "NONE",
+          "commercial_readiness": "100% Cleared worldwide for all media"
+        },
+        "monitored": false
+      },
+      {
+        "id": "cand-nara-dustbowl-02",
+        "title": "Dust Storm Engulfing Cimarron County Farms (1935 Newsreel Outtakes)",
+        "source_name": "National Archives and Records Administration (NARA)",
+        "source_url": "https://catalog.archives.gov/id/duststorm1935",
+        "thumbnail_url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80",
+        "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+        "price": "$0.00 (Public Domain)",
+        "price_numeric": 0,
+        "license_scope": "Public Domain Mark (No Known Restrictions)",
+        "resolution": "1080p HD (16mm Transfer)",
+        "color_profile": "Monochrome (B&W)",
+        "era": "1930s-1940s",
+        "duration": "02:40",
+        "timecode_in": "00:00:15:00",
+        "timecode_out": "00:01:05:00",
+        "pd_claim": "verified",
+        "relevance_score": 0.94,
+        "notes": "Authentic archival footage of towering black blizzard roller cloud approaching rural homestead.",
+        "clearance_details": {
+          "provenance": "Record Group 16: Records of the Office of the Secretary of Agriculture, National Archives",
+          "copyright_status": "Public domain under 17 U.S.C. § 105",
+          "eo_risk_rating": "NONE",
+          "commercial_readiness": "100% Cleared worldwide"
+        },
+        "monitored": true
+      }
+    ]
+  }
+]

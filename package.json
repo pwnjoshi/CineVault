@@ -1,0 +1,23 @@
+{
+  "name": "reelfind",
+  "version": "1.0.0",
+  "description": "Reelfind — Archival & Stock Footage AI Sourcing Agent on Gemini Enterprise + Parallel",
+  "scripts": {
+    "install:all": "cd server && npm install",
+    "build": "cd server && npm run build",
+    "start": "cd server && npm start",
+    "dev": "cd server && npm run dev"
+  },
+  "keywords": [
+    "agentic-cinema",
+    "gemini-enterprise",
+    "vertex-ai",
+    "parallel-ai",
+    "premiere-pro",
+    "uxp",
+    "stock-footage",
+    "archival-footage"
+  ],
+  "author": "Reelfind Contributors",
+  "license": "MIT"
+}

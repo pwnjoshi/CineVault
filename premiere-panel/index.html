@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineVault Premiere Pro Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.svg">
+</head>
+<body class="uxp-body">
+  <div class="panel-container">
+    <!-- Header -->
+    <header class="panel-header">
+      <div class="header-left">
+        <span class="pr-badge">Pr</span>
+        <span class="panel-title">CINEVAULT STUDIO</span>
+      </div>
+      <div class="header-right">
+        <div class="header-status">
+          <span class="dot-online" id="status-indicator"></span>
+          <span class="status-text" id="status-label">Connected</span>
+        </div>
+        <a href="/dashboard" target="_blank" class="web-studio-link" title="Open Full Studio Dashboard">
+          <span>Web Studio</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- Search Input Area -->
+    <section class="search-section">
+      <div class="search-bar">
+        <input 
+          type="text" 
+          id="panel-search-input" 
+          placeholder="Describe missing archival shot..." 
+          value="black-and-white footage of a crowded factory floor, 1960s, USA"
+        />
+        <button id="panel-search-btn" class="btn-search" title="Search via Gemini Enterprise & Parallel">
+          <span id="search-btn-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </span>
+          <span id="search-btn-spinner" class="spinner hidden"></span>
+        </button>
+      </div>
+
+      <!-- Quick sample chips -->
+      <div class="sample-chips">
+        <button class="chip-btn" data-q="black-and-white footage of a crowded factory floor, 1960s, USA, industrial machinery">1960s Factory</button>
+        <button class="chip-btn" data-q="Apollo 11 mission control Houston room reaction to Moon landing, July 1969">Apollo 11</button>
+        <button class="chip-btn" data-q="Himalayan mountain expedition 1930s high altitude trek">Himalayas</button>
+        <button class="chip-btn" data-q="1980s neon Tokyo night drive, Shibuya crossing, rainy reflections">80s Tokyo</button>
+      </div>
+    </section>
+
+    <!-- Execution Status Bar -->
+    <div id="agent-status-bar" class="agent-status-bar hidden">
+      <svg class="agent-pulse-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+      <span id="agent-status-text">Gemini agent analyzing shot & Parallel searching...</span>
+    </div>
+
+    <!-- Results List -->
+    <main class="results-container">
+      <div class="results-header">
+        <span class="results-title">Ranked Candidates</span>
+        <span class="results-count" id="panel-results-count">0 clips</span>
+      </div>
+
+      <div id="results-list" class="results-list">
+        <div class="empty-panel-state">
+          <p>Enter a shot description above to source archival clips directly into your Premiere project bin.</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Project Bin Action Bar -->
+    <footer class="panel-footer">
+      <button id="import-all-btn" class="btn-primary-block" disabled>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Import All Candidates to Project Bin
+      </button>
+      <div class="footer-export-row">
+        <button id="export-xml-btn" class="mini-export-btn" title="Download Premiere Pro Sequence XML">
+          XML
+        </button>
+        <button id="export-edl-btn" class="mini-export-btn" title="Download CMX 3600 Edit Decision List">
+          EDL
+        </button>
+        <button id="export-fcpxml-btn" class="mini-export-btn" title="Download FCPXML / DaVinci Sequence">
+          FCPXML
+        </button>
+        <button id="export-csv-btn" class="mini-export-btn" title="Download Metadata Spreadsheet">
+          Legal CSV
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- In-Panel Video Preview Modal -->
+  <div id="panel-video-modal" class="panel-modal-backdrop hidden">
+    <div class="panel-modal-box">
+      <div class="panel-modal-header">
+        <span id="panel-modal-title" class="panel-modal-title">Clip Preview</span>
+        <button id="close-panel-modal-btn" class="panel-modal-close">&times;</button>
+      </div>
+      <div class="panel-video-wrapper">
+        <video id="panel-video-player" controls playsinline preload="auto"></video>
+        <iframe id="panel-iframe-player" class="hidden" allowfullscreen allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="panel-modal-footer">
+        <span id="panel-modal-meta" class="panel-modal-meta">$0.00 Public Domain • 1080p</span>
+        <button id="panel-modal-add-btn" class="btn-uxp-action primary">Add to Project Bin</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
