@@ -37,6 +37,11 @@ export function initScriptTimelineModule() {
       const input = document.getElementById('screenplay-input');
       if (input) {
         input.value = `SCENE 1: INT. DETROIT AUTOMOTIVE PLANT - 1962 - DAY\nMassive hydraulic stamping presses pound raw steel. Machinists install V8 engine blocks along the assembly line.\n\nSCENE 2: EXT. HIGHWAY OVERPASS - 1965 - DAY\nClassic vintage automobiles cruise along interstate highway lanes in 1960s Technicolor.`;
+      }
+      executeScriptToTimeline();
+    });
+  }
+
   const spotlightAudioBtn = document.getElementById('spotlight-audio-btn');
   if (spotlightAudioBtn) {
     spotlightAudioBtn.addEventListener('click', () => {

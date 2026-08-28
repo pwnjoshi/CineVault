@@ -184,11 +184,6 @@ export function initPlayerControls() {
   const modalImportGradedBtn = document.getElementById('modal-import-graded-btn');
   const modalWatchBtn = document.getElementById('modal-watch-btn');
   const togglePlayerModeBtn = document.getElementById('toggle-player-mode-btn');
-  const toggle4kBtn = document.getElementById('toggle-4k-restoration-btn');
-  const restorationBox = document.getElementById('restoration-slider-box');
-  const restorationRange = document.getElementById('restoration-range-input');
-  const afterLayer = document.getElementById('restoration-after-layer');
-  const dividerLine = document.getElementById('restoration-divider-line');
 
   const setInBtn = document.getElementById('set-in-btn');
   const setOutBtn = document.getElementById('set-out-btn');
