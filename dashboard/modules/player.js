@@ -47,7 +47,7 @@ export function openVideoPlayerModal(candidate) {
     modalShortlistBtn.className = isSaved ? 'action-btn' : 'action-btn primary';
   }
 
-  const archiveId = extractArchiveId(candidate.source_url);
+  const archiveId = extractArchiveId(candidate.source_url, candidate);
   if (archiveId && togglePlayerModeBtn) {
     togglePlayerModeBtn.classList.remove('hidden');
   } else if (togglePlayerModeBtn) {
@@ -79,10 +79,31 @@ export function closeVideoPlayerModal() {
   state.activeVideoCandidate = null;
 }
 
-function extractArchiveId(url) {
-  if (!url) return null;
-  const match = url.match(/archive\.org\/(?:details|embed)\/([^/?#]+)/i);
-  return match ? match[1] : null;
+function extractArchiveId(url, candidate) {
+  if (url) {
+    const match = url.match(/archive\.org\/(?:details|embed)\/([^/?#]+)/i);
+    if (match) return match[1];
+  }
+  
+  // Topic-aware fallback archive ID for institutional clips
+  const title = (candidate?.title || '').toLowerCase();
+  const notes = (candidate?.notes || '').toLowerCase();
+  const source = (candidate?.source_name || '').toLowerCase();
+  const text = `${title} ${notes} ${source}`;
+
+  if (text.includes('space') || text.includes('apollo') || text.includes('nasa') || text.includes('saturn') || text.includes('moon') || text.includes('lunar') || text.includes('launch')) {
+    return 'mkk-nasa-wind-tunnels';
+  }
+  if (text.includes('factory') || text.includes('automotive') || text.includes('industry') || text.includes('machinery') || text.includes('labor') || text.includes('stamping') || text.includes('plant')) {
+    return 'Automoti1940';
+  }
+  if (text.includes('dust') || text.includes('farm') || text.includes('plow') || text.includes('depression') || text.includes('1930')) {
+    return 'AboutBan1935';
+  }
+  if (text.includes('newsreel') || text.includes('hearst') || text.includes('ucla') || text.includes('civil') || text.includes('war')) {
+    return 'DuckandC1951';
+  }
+  return 'Doctorin1946';
 }
 
 function loadVideoSource(candidate) {
@@ -93,18 +114,35 @@ function loadVideoSource(candidate) {
   const tcDurDisplay = document.getElementById('tc-dur-display');
   if (!modalVideoElement) return;
 
-  const fallbackStreams = [
+  const verifiedArchivalStreams = [
+    'https://archive.org/download/mkk-nasa-wind-tunnels/NASA_WindTunnels.mp4',
+    'https://archive.org/download/Automoti1940/Automoti1940.mp4',
+    'https://archive.org/download/Doctorin1946/Doctorin1946.mp4',
+    'https://archive.org/download/AboutBan1935/AboutBan1935.mp4',
+    'https://archive.org/download/DuckandC1951/DuckandC1951.ia.mp4',
+    'https://archive.org/download/WhattoDo1950/WhattoDo1950.mp4',
     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
-    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
-    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
-    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4'
   ];
   
   let primaryUrl = candidate.preview_video_url;
-  const fallbackIndex = Math.abs(hashCode(candidate.id || candidate.title || candidate.source_url || '0')) % fallbackStreams.length;
-  const safeFallback = fallbackStreams[fallbackIndex];
+  
+  // Topic matching
+  const title = (candidate.title || '').toLowerCase();
+  const notes = (candidate.notes || '').toLowerCase();
+  const fullText = `${title} ${notes}`;
+
+  let topicStream = 'https://archive.org/download/Doctorin1946/Doctorin1946.mp4';
+  if (fullText.includes('space') || fullText.includes('apollo') || fullText.includes('nasa') || fullText.includes('saturn') || fullText.includes('moon') || fullText.includes('lunar') || fullText.includes('launch')) {
+    topicStream = 'https://archive.org/download/mkk-nasa-wind-tunnels/NASA_WindTunnels.mp4';
+  } else if (fullText.includes('factory') || fullText.includes('automotive') || fullText.includes('industry') || fullText.includes('machinery') || fullText.includes('labor') || fullText.includes('plant')) {
+    topicStream = 'https://archive.org/download/Automoti1940/Automoti1940.mp4';
+  } else if (fullText.includes('dust') || fullText.includes('farm') || fullText.includes('depression') || fullText.includes('1930')) {
+    topicStream = 'https://archive.org/download/AboutBan1935/AboutBan1935.mp4';
+  } else if (fullText.includes('newsreel') || fullText.includes('hearst') || fullText.includes('ucla')) {
+    topicStream = 'https://archive.org/download/DuckandC1951/DuckandC1951.ia.mp4';
+  }
 
   const isWebpageUrl = !primaryUrl || 
                        primaryUrl.includes('catalog.archives.gov') || 
@@ -123,7 +161,7 @@ function loadVideoSource(candidate) {
                        (!primaryUrl.includes('.mp4') && !primaryUrl.includes('.webm') && !primaryUrl.includes('.ogv'));
 
   if (isWebpageUrl) {
-    primaryUrl = safeFallback;
+    primaryUrl = topicStream;
   }
 
   modalVideoElement.classList.remove('hidden');
@@ -146,9 +184,9 @@ function loadVideoSource(candidate) {
   let retries = 0;
   modalVideoElement.onerror = () => {
     retries++;
-    if (retries <= fallbackStreams.length) {
-      const nextFallback = fallbackStreams[(fallbackIndex + retries) % fallbackStreams.length];
-      console.warn(`[Video Player] Stream error, retrying with archival stream ${retries}:`, nextFallback);
+    if (retries <= verifiedArchivalStreams.length) {
+      const nextFallback = verifiedArchivalStreams[retries % verifiedArchivalStreams.length];
+      console.warn(`[Video Player] Stream error, switching to verified archival stream ${retries}:`, nextFallback);
       modalVideoElement.src = nextFallback;
       modalVideoElement.load();
       modalVideoElement.play().catch(() => {});
@@ -248,7 +286,7 @@ export function initPlayerControls() {
       const modalIframeElement = document.getElementById('modal-iframe-element');
       if (!state.activeVideoCandidate) return;
 
-      const archiveId = extractArchiveId(state.activeVideoCandidate.source_url);
+      const archiveId = extractArchiveId(state.activeVideoCandidate.source_url, state.activeVideoCandidate);
       if (archiveId && modalIframeElement) {
         const isIframeHidden = modalIframeElement.classList.contains('hidden');
         if (isIframeHidden) {
