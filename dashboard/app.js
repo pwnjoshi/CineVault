@@ -544,6 +544,10 @@ function initSplitScreenPlayer() {
 function initAuthGate() {
   const profileBtn = document.getElementById('user-profile-btn');
   const dropdownMenu = document.getElementById('profile-dropdown-menu');
+  const signInBtn = document.getElementById('sign-in-btn');
+  const authGateSignInBtn = document.getElementById('auth-gate-sign-in-btn');
+  const authGateModal = document.getElementById('auth-gate-modal');
+  const userProfileWrapper = document.getElementById('user-profile-wrapper');
 
   if (profileBtn && dropdownMenu) {
     profileBtn.addEventListener('click', (e) => {
@@ -558,28 +562,40 @@ function initAuthGate() {
     });
   }
 
-  // Restore active user session on app start
+  const handleSignInClick = () => {
+    if (window._clerk) {
+      window._clerk.openSignIn();
+    } else {
+      showToast('Connecting to Clerk Authentication...', 'info');
+      setTimeout(() => {
+        if (window._clerk) window._clerk.openSignIn();
+      }, 800);
+    }
+  };
+
+  if (signInBtn) signInBtn.addEventListener('click', handleSignInClick);
+  if (authGateSignInBtn) authGateSignInBtn.addEventListener('click', handleSignInClick);
+
+  // Check saved user session
   const savedUserStr = localStorage.getItem('cinevault_user');
   if (savedUserStr) {
     try {
       state.user = JSON.parse(savedUserStr);
-    } catch {}
+    } catch {
+      state.user = null;
+    }
   }
 
-  if (!state.user) {
-    state.user = {
-      id: 'usr_studio_lead',
-      name: 'Pawan Joshi',
-      email: 'joshipawan2021@gmail.com',
-      avatar: 'PJ',
-      role: 'LEAD_EDITOR',
-      token: 'token_studio_lead_active'
-    };
-    localStorage.setItem('cinevault_user', JSON.stringify(state.user));
+  if (state.user) {
+    if (authGateModal) authGateModal.classList.add('hidden');
+    if (signInBtn) signInBtn.classList.add('hidden');
+    if (userProfileWrapper) userProfileWrapper.classList.remove('hidden');
+  } else {
+    // Show Auth Gate prompt for unauthenticated studio visitors
+    if (authGateModal) authGateModal.classList.remove('hidden');
+    if (signInBtn) signInBtn.classList.remove('hidden');
+    if (userProfileWrapper) userProfileWrapper.classList.add('hidden');
   }
-
-  const authGateModal = document.getElementById('auth-gate-modal');
-  if (authGateModal) authGateModal.classList.add('hidden');
 }
 
 function initParallelInspectorModal() {
