@@ -27,6 +27,34 @@
       },
       "monitored": true,
       "saved_at": "2026-08-28T16:28:51.425Z"
+    },
+    {
+      "id": "cand-pwspl7-2",
+      "title": "UCLA Hearst Metrotone Newsreel Preservation Master",
+      "source_name": "UCLA Film & Television Archive",
+      "source_url": "https://archive.org/details/DuckandC1951",
+      "thumbnail_url": "https://archive.org/services/img/DuckandC1951",
+      "preview_video_url": "https://archive.org/download/DuckandC1951/DuckandC1951.ia.mp4",
+      "price": "$0.00 (Public Domain)",
+      "price_numeric": 0,
+      "license_scope": "Public Domain Mark 1.0 (Free Unrestricted Use)",
+      "resolution": "1080p 24fps (16mm / 35mm Telecine Scan)",
+      "color_profile": "Nitrate 35mm B&W",
+      "era": "1930s-1960s",
+      "duration": "03:42",
+      "timecode_in": "00:01:14:00",
+      "timecode_out": "00:01:45:12",
+      "pd_claim": "verified",
+      "relevance_score": 0.94,
+      "notes": "UCLA Film & Television Archive 35mm nitrate restoration of historic Hearst Metrotone newsreel series.",
+      "clearance_details": {
+        "provenance": "Archival repository: UCLA Film & Television Archive",
+        "copyright_status": "Statutory Public Domain",
+        "eo_risk_rating": "LOW (Statutory Public Domain)",
+        "commercial_readiness": "100% Cleared for Worldwide Theatrical & Streaming"
+      },
+      "monitored": true,
+      "saved_at": "2026-08-28T16:31:40.152Z"
     }
   ],
   "monitoredClips": [
@@ -69,7 +97,47 @@
           "message": "Parallel Monitor scan verified: Rights status active, zero clearance disputes detected on https://archive.org/details/DuckandC1951"
         }
       ]
+    },
+    {
+      "id": "mon-1787934700154-ih82c",
+      "candidate_id": "cand-pwspl7-2",
+      "title": "UCLA Hearst Metrotone Newsreel Preservation Master",
+      "source_url": "https://archive.org/details/DuckandC1951",
+      "source_name": "UCLA Film & Television Archive",
+      "initial_price": "$0.00 (Public Domain)",
+      "current_price": "$0.00 (Public Domain)",
+      "watch_for": "Price or availability change",
+      "status": "active",
+      "last_checked_at": "2026-08-28T16:31:40.154Z",
+      "change_history": [
+        {
+          "timestamp": "2026-08-28T16:31:40.154Z",
+          "message": "Parallel Monitor task registered for URL: https://archive.org/details/DuckandC1951"
+        }
+      ]
+    },
+    {
+      "id": "mon-1787934700176-4y95e",
+      "candidate_id": "cand-pwspl7-2",
+      "title": "UCLA Hearst Metrotone Newsreel Preservation Master",
+      "source_url": "https://archive.org/details/DuckandC1951",
+      "source_name": "UCLA Film & Television Archive",
+      "initial_price": "$0.00 (Public Domain)",
+      "current_price": "$0.00 (Public Domain)",
+      "watch_for": "Price discount or license scope alteration",
+      "status": "active",
+      "last_checked_at": "2026-08-28T16:31:40.181Z",
+      "change_history": [
+        {
+          "timestamp": "2026-08-28T16:31:40.176Z",
+          "message": "Parallel Monitor task registered for URL: https://archive.org/details/DuckandC1951"
+        },
+        {
+          "timestamp": "2026-08-28T16:31:40.181Z",
+          "message": "Parallel Monitor scan verified: Rights status active, zero clearance disputes detected on https://archive.org/details/DuckandC1951"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-08-28T16:28:51.459Z"
+  "updatedAt": "2026-08-28T16:31:40.181Z"
 }

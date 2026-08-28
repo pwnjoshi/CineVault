@@ -27,10 +27,6 @@ window.executeSearch = executeSearch;
 function initApp() {
   console.log('[CineVault Studio] Initializing Workspace Modules & Handlers...');
 
-  if (!state.candidates || state.candidates.length === 0) {
-    state.candidates = getSampleCandidates();
-  }
-
   // Initialize Modules
   initPlayerControls();
   initScriptTimelineModule();
@@ -48,13 +44,30 @@ function initApp() {
   initAuthGate();
   initParallelInspectorModal();
 
-  // Initial render
-  renderCandidates();
-  renderShortlist();
-  updateShortlistBadge();
+  // Check URL query parameters (e.g. /dashboard?q=Apollo+11+Saturn+V+launch+NASA+70mm)
+  const urlParams = new URLSearchParams(window.location.search);
+  const qParam = urlParams.get('q');
+  const shotInput = document.getElementById('shot-query-input');
 
-  if (state.candidates.length > 0) {
-    selectCandidateForInspector(state.candidates[0]);
+  if (qParam && qParam.trim()) {
+    const cleanQuery = qParam.trim();
+    if (shotInput) {
+      shotInput.value = cleanQuery;
+    }
+    // Execute live search immediately with query from URL
+    executeSearch();
+  } else {
+    // Default initial render
+    if (!state.candidates || state.candidates.length === 0) {
+      state.candidates = getSampleCandidates();
+    }
+    renderCandidates();
+    renderShortlist();
+    updateShortlistBadge();
+
+    if (state.candidates.length > 0) {
+      selectCandidateForInspector(state.candidates[0]);
+    }
   }
 }
 
