@@ -1,5 +1,5 @@
 /**
- * Reelfind Studio — Landing & Public Navigation Controller
+ * CineVault Studio — Landing & Public Navigation Controller
  * Protects Studio Workspace and Premiere Panel access with Clerk authentication
  */
 
@@ -209,7 +209,7 @@ function attachEventListeners() {
       state.user = null;
       localStorage.removeItem('reelfind_user');
       updateAuthUI();
-      showToast('Signed out of Reelfind Studio', 'alert');
+      showToast('Signed out of CineVault Studio', 'alert');
     });
   }
 }

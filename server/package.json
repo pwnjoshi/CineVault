@@ -1,7 +1,7 @@
 {
-  "name": "reelfind-server",
+  "name": "cinevault-server",
   "version": "1.0.0",
-  "description": "Backend API for Reelfind: AI Footage Discovery Agent on Gemini Enterprise & Parallel",
+  "description": "Backend API for CineVault Studio: AI Footage Discovery Agent on Gemini Enterprise & Parallel",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import * as crypto from 'crypto';
 
 /**
- * Reelfind Role-Based Access Control (RBAC) & Authentication Service
+ * CineVault Studio Role-Based Access Control (RBAC) & Authentication Service
  */
 
 export type UserRole = 'LEAD_EDITOR' | 'ARCHIVAL_RESEARCHER' | 'LEGAL_COUNSEL' | 'STUDIO_ADMIN';

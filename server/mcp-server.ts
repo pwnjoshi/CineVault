@@ -2,7 +2,7 @@ import * as readline from 'readline';
 import { parallelClient } from './parallel-client';
 
 /**
- * Reelfind Model Context Protocol (MCP) Server for Parallel API
+ * CineVault Studio Model Context Protocol (MCP) Server for Parallel API
  * Exposes Parallel Search, Extract, and Monitor as standardized MCP tools
  * conforming to the Model Context Protocol specification.
  */

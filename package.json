@@ -1,7 +1,7 @@
 {
-  "name": "reelfind",
+  "name": "cinevault-studio",
   "version": "1.0.0",
-  "description": "Reelfind — Archival & Stock Footage AI Sourcing Agent on Gemini Enterprise + Parallel",
+  "description": "CineVault Studio — Archival & Stock Footage AI Sourcing Agent on Gemini Enterprise + Parallel",
   "scripts": {
     "install:all": "cd server && npm install",
     "build": "cd server && npm run build",

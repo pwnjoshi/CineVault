@@ -1,4 +1,4 @@
-# CineVault Studio (Reelfind Engine) 🎞️
+# CineVault Studio 🎞️
 > **Autonomous Multi-Agent Archival Post-Production & NLE AI Engine built on Google Cloud Gemini Enterprise + Parallel API & MCP Server**  
 > *Submitted to the Agentic Cinema: The Blockbuster Hackathon (Parallel Partner Track)*
 

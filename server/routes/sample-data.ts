@@ -44,7 +44,7 @@ router.get('/status', (req: Request, res: Response) => {
 
   return res.status(200).json({
     status: 'healthy',
-    system: 'Reelfind Intelligent Footage Sourcing Agent',
+    system: 'CineVault Studio Intelligent Archival Footage Sourcing Agent',
     uptime_seconds: Math.floor(process.uptime()),
     metrics: {
       shortlist_items: store.getShortlist().length,

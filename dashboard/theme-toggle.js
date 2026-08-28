@@ -1,5 +1,5 @@
 /**
- * theme-toggle.js — Reelfind Studio Light / Dark Mode Controller
+ * theme-toggle.js — CineVault Studio Light / Dark Mode Controller
  * Persists theme preference across page reloads and synchronizes icon states.
  */
 

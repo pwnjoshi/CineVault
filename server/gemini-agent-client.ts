@@ -75,7 +75,7 @@ export class GeminiAgentClient {
     return {
       projectId: this.projectId || 'not_set (local agent loop active)',
       location: this.location,
-      agentAppId: this.agentAppId || 'default-reelfind-agent',
+      agentAppId: this.agentAppId || 'default-cinevault-agent',
       hasGcpAuth: this.hasGcpAuth,
       mode: this.hasGcpAuth ? 'Google Cloud Vertex AI Agent Builder' : 'Agentic Tool Orchestration Loop'
     };

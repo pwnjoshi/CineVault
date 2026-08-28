@@ -1,10 +1,10 @@
 /**
- * clerk-auth.js — Reelfind Clerk Authentication Controller
+ * clerk-auth.js — CineVault Studio Clerk Authentication Controller
  *
  * Single responsibility:
  *  1. Load the Clerk JS SDK
  *  2. Expose window._clerk so app.js can call openSignIn() / signOut()
- *  3. On successful sign-in, sync user data into the Reelfind UI
+ *  3. On successful sign-in, sync user data into the CineVault Studio UI
  *  4. On sign-out, clear state and reset the header to "Sign In"
  */
 
