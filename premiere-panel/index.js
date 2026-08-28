@@ -242,16 +242,16 @@ function renderPanelResults(items) {
   }
 
   const fallbackThumbs = [
-    'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80'
+    'https://archive.org/services/img/Doctorin1946',
+    'https://archive.org/services/img/mkk-nasa-wind-tunnels',
+    'https://archive.org/services/img/Automoti1940'
   ];
 
   resultsList.innerHTML = items.map((clip, index) => {
     const pdClass = clip.pd_claim === 'verified' ? 'verified' : (clip.pd_claim === 'unverified' ? 'unverified' : 'not_claimed');
     const pdLabel = clip.pd_claim === 'verified' ? 'Verified PD' : (clip.pd_claim === 'unverified' ? 'Unverified Claim' : 'Commercial Clearance');
     const fallbackThumb = fallbackThumbs[index % fallbackThumbs.length];
-    const thumbUrl = (clip.thumbnail_url && !clip.thumbnail_url.includes('archive.org/services/img')) ? clip.thumbnail_url : fallbackThumb;
+    const thumbUrl = (clip.thumbnail_url && !clip.thumbnail_url.includes('unsplash.com')) ? clip.thumbnail_url : fallbackThumb;
 
     return `
       <div class="uxp-card" data-idx="${index}">

@@ -339,27 +339,27 @@ export class GeminiAgentClient {
   private getPlaceholderThumbnail(query: string, index: number): string {
     const qLower = query.toLowerCase();
 
-    if (qLower.includes('space') || qLower.includes('moon') || qLower.includes('nasa') || qLower.includes('rocket')) {
-      return 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80';
+    if (qLower.includes('space') || qLower.includes('moon') || qLower.includes('nasa') || qLower.includes('rocket') || qLower.includes('apollo')) {
+      return 'https://archive.org/services/img/mkk-nasa-wind-tunnels';
     }
-    if (qLower.includes('tokyo') || qLower.includes('japan') || qLower.includes('neon') || qLower.includes('city')) {
-      return 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80';
+    if (qLower.includes('tokyo') || qLower.includes('japan') || qLower.includes('neon') || qLower.includes('city') || qLower.includes('night')) {
+      return 'https://archive.org/services/img/HaveITol1958';
     }
-    if (qLower.includes('farm') || qLower.includes('dust') || qLower.includes('rural') || qLower.includes('country')) {
-      return 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80';
+    if (qLower.includes('farm') || qLower.includes('dust') || qLower.includes('rural') || qLower.includes('country') || qLower.includes('depression')) {
+      return 'https://archive.org/services/img/AboutBan1935';
     }
-    if (qLower.includes('war') || qLower.includes('military') || qLower.includes('plane') || qLower.includes('aviation')) {
-      return 'https://images.unsplash.com/photo-1519074069444-1ba4fff16def?auto=format&fit=crop&w=800&q=80';
+    if (qLower.includes('war') || qLower.includes('military') || qLower.includes('plane') || qLower.includes('aviation') || qLower.includes('newsreel')) {
+      return 'https://archive.org/services/img/DuckandC1951';
     }
-    if (qLower.includes('train') || qLower.includes('rail') || qLower.includes('locomotive')) {
-      return 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=800&q=80';
+    if (qLower.includes('factory') || qLower.includes('industrial') || qLower.includes('machinery') || qLower.includes('labor')) {
+      return 'https://archive.org/services/img/Automoti1940';
     }
 
     const genericPlaceholders = [
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'
+      'https://archive.org/services/img/Doctorin1946',
+      'https://archive.org/services/img/WhattoDo1950',
+      'https://archive.org/services/img/ParkCons1938',
+      'https://archive.org/services/img/CaseofSp1940'
     ];
     return genericPlaceholders[index % genericPlaceholders.length];
   }

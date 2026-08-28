@@ -52,48 +52,44 @@ export function updateShortlistBadge() {
 }
 
 function getUniqueThumbnailForClip(candidate) {
-  if (candidate.thumbnail_url) {
+  if (candidate.thumbnail_url && !candidate.thumbnail_url.includes('unsplash.com')) {
     return candidate.thumbnail_url;
   }
 
-  const topic = (candidate.title + ' ' + (candidate.notes || '') + ' ' + (candidate.source_name || '')).toLowerCase();
+  const topic = ((candidate.title || '') + ' ' + (candidate.notes || '') + ' ' + (candidate.source_name || '')).toLowerCase();
 
-  if (topic.includes('nepal') || topic.includes('mountain') || topic.includes('earthquake') || topic.includes('himalaya') || topic.includes('relief')) {
-    const nepalPool = [
-      'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1518002171953-a0847b77f98e?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
-    ];
-    return nepalPool[Math.abs(hashCode(candidate.id || candidate.title)) % nepalPool.length];
+  if (topic.includes('space') || topic.includes('nasa') || topic.includes('apollo') || topic.includes('launch') || topic.includes('moon') || topic.includes('saturn')) {
+    return 'https://archive.org/services/img/mkk-nasa-wind-tunnels';
   }
 
-  if (topic.includes('space') || topic.includes('monsoon') || topic.includes('earth') || topic.includes('nasa') || topic.includes('apollo') || topic.includes('launch')) {
-    const spacePool = [
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80'
-    ];
-    return spacePool[Math.abs(hashCode(candidate.id || candidate.title)) % spacePool.length];
-  }
-
-  if (topic.includes('factory') || topic.includes('industrial') || topic.includes('machinery') || topic.includes('labor') || topic.includes('plant') || topic.includes('detroit')) {
+  if (topic.includes('factory') || topic.includes('industrial') || topic.includes('machinery') || topic.includes('labor') || topic.includes('plant') || topic.includes('detroit') || topic.includes('assembly')) {
     const factoryPool = [
-      'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1518676599626-5cd8c2d3c850?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80'
+      'https://archive.org/services/img/Automoti1940',
+      'https://archive.org/services/img/Doctorin1946',
+      'https://archive.org/services/img/122Eyes1950'
     ];
     return factoryPool[Math.abs(hashCode(candidate.id || candidate.title)) % factoryPool.length];
   }
 
+  if (topic.includes('tokyo') || topic.includes('japan') || topic.includes('neon') || topic.includes('night') || topic.includes('city')) {
+    return 'https://archive.org/services/img/HaveITol1958';
+  }
+
+  if (topic.includes('dust') || topic.includes('farm') || topic.includes('depression') || topic.includes('1930') || topic.includes('rural')) {
+    return 'https://archive.org/services/img/AboutBan1935';
+  }
+
+  if (topic.includes('newsreel') || topic.includes('hearst') || topic.includes('war') || topic.includes('military')) {
+    return 'https://archive.org/services/img/DuckandC1951';
+  }
+
   const masterPool = [
-    'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80'
+    'https://archive.org/services/img/WhattoDo1950',
+    'https://archive.org/services/img/Doctorin1946',
+    'https://archive.org/services/img/ParkCons1938',
+    'https://archive.org/services/img/CaseofSp1940',
+    'https://archive.org/services/img/Sleepfor1950',
+    'https://archive.org/services/img/HealthYo1953'
   ];
 
   return masterPool[Math.abs(hashCode(candidate.id || candidate.title)) % masterPool.length];
@@ -114,7 +110,7 @@ function renderClipCardHtml(candidate, isShortlist) {
   const pdLabel = candidate.pd_claim === 'verified' ? 'Verified PD' : (candidate.pd_claim === 'unverified' ? 'Unverified Claim' : 'Commercial Clearance');
 
   const thumbUrl = getUniqueThumbnailForClip(candidate);
-  const fallbackThumb = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80';
+  const fallbackThumb = 'https://archive.org/services/img/Doctorin1946';
 
   return `
     <div class="clip-card" data-id="${candidate.id}" style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s ease;">

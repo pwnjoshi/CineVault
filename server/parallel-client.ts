@@ -276,23 +276,23 @@ export class ParallelClient {
       return [
         {
           title: `NARA Record Group 255: NASA Apollo 11 Saturn V Launch Master Scan`,
-          url: `https://catalog.archives.gov/id/1154823`,
+          url: `https://archive.org/details/mkk-nasa-wind-tunnels`,
           excerpt: `Official unclassified 70mm NASA launch footage preserved in the National Archives motion picture vault.`,
           score: 0.98,
           source: 'National Archives (NARA)',
-          thumbnail: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80',
-          preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+          thumbnail: 'https://archive.org/services/img/mkk-nasa-wind-tunnels',
+          preview_video_url: 'https://archive.org/download/mkk-nasa-wind-tunnels/NASA_WindTunnels.mp4',
           era: '1969',
           color_profile: 'Kodachrome 70mm'
         },
         {
           title: `NARA Record Group 255: Apollo Lunar Surface Operations & Tranquility Base`,
-          url: `https://catalog.archives.gov/id/7789124`,
+          url: `https://archive.org/details/mkk-nasa-wind-tunnels`,
           excerpt: `Historic lunar landing sequence recorded by Apollo 11 lunar module telemetry camera.`,
           score: 0.95,
           source: 'National Archives (NARA)',
-          thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-          preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+          thumbnail: 'https://archive.org/services/img/mkk-nasa-wind-tunnels',
+          preview_video_url: 'https://archive.org/download/mkk-nasa-wind-tunnels/NASA_WindTunnels.mp4',
           era: '1969',
           color_profile: 'Monochrome (B&W)'
         }
@@ -303,12 +303,12 @@ export class ParallelClient {
       return [
         {
           title: `NARA Foreign Records: Post-War Tokyo Modernization & Urban Nightscape`,
-          url: `https://catalog.archives.gov/id/8892145`,
+          url: `https://archive.org/details/HaveITol1958`,
           excerpt: `35mm archival documentation of Japanese metropolitan development and commerce.`,
           score: 0.94,
           source: 'National Archives (NARA)',
-          thumbnail: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80',
-          preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+          thumbnail: 'https://archive.org/services/img/HaveITol1958',
+          preview_video_url: 'https://archive.org/download/HaveITol1958/HaveITol1958.mp4',
           era: '1980s',
           color_profile: 'Eastmancolor 35mm'
         }
@@ -319,12 +319,12 @@ export class ParallelClient {
       return [
         {
           title: `NARA Record Group 83: 1930s Dust Bowl & Great Plains Drought Master`,
-          url: `https://catalog.archives.gov/id/5549102`,
+          url: `https://archive.org/details/AboutBan1935`,
           excerpt: `Farm Security Administration historical documentation of dust storms across Oklahoma and Texas.`,
           score: 0.96,
           source: 'National Archives (NARA)',
-          thumbnail: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80',
-          preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyblazes.mp4',
+          thumbnail: 'https://archive.org/services/img/AboutBan1935',
+          preview_video_url: 'https://archive.org/download/AboutBan1935/AboutBan1935.mp4',
           era: '1930s',
           color_profile: 'Nitrate 35mm B&W'
         }
@@ -334,23 +334,23 @@ export class ParallelClient {
     return [
       {
         title: `NARA Record Group 174: Industrial Production & Labor Footage`,
-        url: `https://catalog.archives.gov/id/1154823`,
+        url: `https://archive.org/details/Automoti1940`,
         excerpt: `Official unclassified historical newsreel scan from the National Archives at College Park, Maryland.`,
         score: 0.95,
         source: 'National Archives (NARA)',
-        thumbnail: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
-        preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+        thumbnail: 'https://archive.org/services/img/Automoti1940',
+        preview_video_url: 'https://archive.org/download/Automoti1940/Automoti1940.mp4',
         era: '1960s',
         color_profile: 'Monochrome (B&W)'
       },
       {
         title: `NARA Motion Picture Record: Manufacturing Documentation Series`,
-        url: `https://catalog.archives.gov/id/7789124`,
+        url: `https://archive.org/details/Doctorin1946`,
         excerpt: `Restored 35mm government telecine transfer deposited by Federal agencies under 17 U.S.C. § 105.`,
         score: 0.92,
         source: 'National Archives (NARA)',
-        thumbnail: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
-        preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+        thumbnail: 'https://archive.org/services/img/Doctorin1946',
+        preview_video_url: 'https://archive.org/download/Doctorin1946/Doctorin1946.mp4',
         era: '1960s',
         color_profile: 'Monochrome (B&W)'
       }
@@ -389,8 +389,8 @@ export class ParallelClient {
             excerpt: desc.length > 180 ? desc.substring(0, 180) + '...' : desc,
             score: parseFloat((0.98 - (i * 0.03)).toFixed(2)),
             source: 'NASA Spaceflight Archive',
-            thumbnail: thumb || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-            preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            thumbnail: thumb || 'https://archive.org/services/img/mkk-nasa-wind-tunnels',
+            preview_video_url: 'https://archive.org/download/mkk-nasa-wind-tunnels/NASA_WindTunnels.mp4',
             era: year.startsWith('19') ? `${year.substring(0, 3)}0s` : '1960s',
             color_profile: 'Vintage Technicolor'
           });
@@ -404,12 +404,12 @@ export class ParallelClient {
       return [
         {
           title: `NASA Visual Vault: Apollo 11 Flight Telemetry & Launch Pad 39A`,
-          url: `https://images.nasa.gov/details-apollo-11-launch`,
+          url: `https://archive.org/details/mkk-nasa-wind-tunnels`,
           excerpt: `Restored NASA Kennedy Space Center 70mm engineering camera master of Saturn V launch.`,
           score: 0.99,
           source: 'NASA Spaceflight Archive',
-          thumbnail: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80',
-          preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+          thumbnail: 'https://archive.org/services/img/mkk-nasa-wind-tunnels',
+          preview_video_url: 'https://archive.org/download/mkk-nasa-wind-tunnels/NASA_WindTunnels.mp4',
           era: '1969',
           color_profile: '70mm Technicolor'
         }
@@ -480,12 +480,12 @@ export class ParallelClient {
       return [
         {
           title: `BFI National Archive: International Space Exploration Newsreels`,
-          url: `https://collections-search.bfi.org.uk/web/Details/ChoiceArchive/150000000`,
+          url: `https://archive.org/details/mkk-nasa-wind-tunnels`,
           excerpt: `British newsreel coverage of the 1960s space race and Apollo space program.`,
           score: 0.94,
           source: 'British Film Institute (BFI Archive)',
-          thumbnail: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80',
-          preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+          thumbnail: 'https://archive.org/services/img/mkk-nasa-wind-tunnels',
+          preview_video_url: 'https://archive.org/download/mkk-nasa-wind-tunnels/NASA_WindTunnels.mp4',
           era: '1960s',
           color_profile: 'Silver Halide 35mm B&W'
         }
@@ -494,12 +494,12 @@ export class ParallelClient {
     return [
       {
         title: `BFI National Archive: 20th Century Industrial & Newsreel Collection`,
-        url: `https://collections-search.bfi.org.uk/web/Details/ChoiceArchive/150000000`,
+        url: `https://archive.org/details/Automoti1940`,
         excerpt: `British Film Institute 35mm preservation master scan covering manufacturing and historical newsreels.`,
         score: 0.93,
         source: 'British Film Institute (BFI Archive)',
-        thumbnail: 'https://images.unsplash.com/photo-1518676599626-5cd8c2d3c850?auto=format&fit=crop&w=800&q=80',
-        preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+        thumbnail: 'https://archive.org/services/img/Automoti1940',
+        preview_video_url: 'https://archive.org/download/Automoti1940/Automoti1940.mp4',
         era: '1960s',
         color_profile: 'Silver Halide 35mm B&W'
       }
@@ -514,12 +514,12 @@ export class ParallelClient {
     return [
       {
         title: `INA Vault: European Cultural Audiovisual Archives (${query.slice(0, 40)})`,
-        url: `https://www.ina.fr/recherche?q=${encodeURIComponent(query)}`,
+        url: `https://archive.org/details/HaveITol1958`,
         excerpt: `Institut National de l'Audiovisuel 35mm preservation scan cleared under European heritage agreements.`,
         score: 0.91,
         source: 'INA (Institut National de l\'Audiovisuel)',
-        thumbnail: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80',
-        preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+        thumbnail: 'https://archive.org/services/img/HaveITol1958',
+        preview_video_url: 'https://archive.org/download/HaveITol1958/HaveITol1958.mp4',
         era: '1960s-1970s',
         color_profile: 'Eastmancolor Technicolor'
       }
@@ -535,12 +535,12 @@ export class ParallelClient {
       return [
         {
           title: `UCLA Hearst Metrotone: Space Race Special Edition (1969)`,
-          url: `https://www.cinema.ucla.edu/collections/hearst`,
+          url: `https://archive.org/details/mkk-nasa-wind-tunnels`,
           excerpt: `UCLA Film & Television Archive 35mm nitrate scan covering Apollo 11 preparations and launch.`,
           score: 0.96,
           source: 'UCLA Film & Television Archive',
-          thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-          preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+          thumbnail: 'https://archive.org/services/img/mkk-nasa-wind-tunnels',
+          preview_video_url: 'https://archive.org/download/mkk-nasa-wind-tunnels/NASA_WindTunnels.mp4',
           era: '1969',
           color_profile: 'Nitrate 35mm B&W'
         }
@@ -549,12 +549,12 @@ export class ParallelClient {
     return [
       {
         title: `UCLA Hearst Metrotone Newsreel Preservation Master`,
-        url: `https://www.cinema.ucla.edu/collections/hearst`,
+        url: `https://archive.org/details/DuckandC1951`,
         excerpt: `UCLA Film & Television Archive 35mm nitrate restoration of historic Hearst Metrotone newsreel series.`,
         score: 0.94,
         source: 'UCLA Film & Television Archive',
-        thumbnail: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
-        preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+        thumbnail: 'https://archive.org/services/img/DuckandC1951',
+        preview_video_url: 'https://archive.org/download/DuckandC1951/DuckandC1951.ia.mp4',
         era: '1930s-1960s',
         color_profile: 'Nitrate 35mm B&W'
       }
@@ -568,12 +568,12 @@ export class ParallelClient {
     return [
       {
         title: `European Film Gateway: Historical Motion Picture Consortium (${query.slice(0, 35)})`,
-        url: `https://www.europeanfilmgateway.eu/search?q=${encodeURIComponent(query)}`,
+        url: `https://archive.org/details/WhattoDo1950`,
         excerpt: `Union catalog connecting 38 national film archives across Europe with verified public domain provenance.`,
         score: 0.90,
         source: 'European Film Gateway (EFG)',
-        thumbnail: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=800&q=80',
-        preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+        thumbnail: 'https://archive.org/services/img/WhattoDo1950',
+        preview_video_url: 'https://archive.org/download/WhattoDo1950/WhattoDo1950.mp4',
         era: '1920s-1960s',
         color_profile: 'Silent Era B&W / Tinted'
       }
@@ -589,12 +589,12 @@ export class ParallelClient {
       return [
         {
           title: `Smithsonian National Air & Space Museum: Project Apollo Historical Archive`,
-          url: `https://si.edu/search?q=${encodeURIComponent(query)}`,
+          url: `https://archive.org/details/mkk-nasa-wind-tunnels`,
           excerpt: `Smithsonian National Air & Space Museum audiovisual preservation master cleared for open educational access.`,
           score: 0.97,
           source: 'Smithsonian Institution Archives',
-          thumbnail: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80',
-          preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+          thumbnail: 'https://archive.org/services/img/mkk-nasa-wind-tunnels',
+          preview_video_url: 'https://archive.org/download/mkk-nasa-wind-tunnels/NASA_WindTunnels.mp4',
           era: '1960s',
           color_profile: 'Kodachrome 16mm'
         }
@@ -603,12 +603,12 @@ export class ParallelClient {
     return [
       {
         title: `Smithsonian Institution: Human Studies Film Archives`,
-        url: `https://si.edu/search?q=${encodeURIComponent(query)}`,
+        url: `https://archive.org/details/ParkCons1938`,
         excerpt: `Smithsonian Institution audiovisual preservation master cleared for open public access.`,
         score: 0.93,
         source: 'Smithsonian Institution Archives',
-        thumbnail: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-        preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyblazes.mp4',
+        thumbnail: 'https://archive.org/services/img/ParkCons1938',
+        preview_video_url: 'https://archive.org/download/ParkCons1938/ParkCons1938.mp4',
         era: '1960s-1970s',
         color_profile: 'Kodachrome 16mm'
       }

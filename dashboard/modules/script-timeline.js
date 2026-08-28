@@ -203,8 +203,8 @@ export function renderScriptScenes(data) {
           </div>
           <div class="scene-candidates-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
             ${(scene.candidates || []).map(c => {
-              const thumb = c.thumbnail_url || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80';
-              const fallback = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80';
+              const thumb = (c.thumbnail_url && !c.thumbnail_url.includes('unsplash.com')) ? c.thumbnail_url : 'https://archive.org/services/img/Doctorin1946';
+              const fallback = 'https://archive.org/services/img/Doctorin1946';
               const pdLabel = c.pd_claim === 'verified' ? 'Verified PD' : (c.pd_claim === 'unverified' ? 'Unverified Claim' : 'Commercial Clearance');
               const pdClass = c.pd_claim === 'verified' ? 'verified' : (c.pd_claim === 'unverified' ? 'unverified' : 'not_claimed');
               return `

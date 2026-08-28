@@ -346,21 +346,29 @@ export function initPlayerControls() {
   const dividerLine = document.getElementById('restoration-divider-line');
   const toggle4kBtn = document.getElementById('toggle-4k-restoration-btn');
   const restorationBox = document.getElementById('restoration-slider-box');
+  const modalVideoElement = document.getElementById('modal-video-element');
 
   if (toggle4kBtn && restorationBox) {
     toggle4kBtn.addEventListener('click', () => {
       const isHidden = restorationBox.classList.contains('hidden');
       if (isHidden) {
+        // Bind the current candidate's actual video thumbnail to both layers
+        const thumbUrl = state.activeVideoCandidate?.thumbnail_url || modalVideoElement?.poster || 'https://archive.org/services/img/Doctorin1946';
+        if (beforeLayer) beforeLayer.style.backgroundImage = `url("${thumbUrl}")`;
+        if (afterLayer) afterLayer.style.backgroundImage = `url("${thumbUrl}")`;
+        
         restorationBox.classList.remove('hidden');
         toggle4kBtn.classList.add('active');
         toggle4kBtn.style.background = 'rgba(56,189,248,0.25)';
         toggle4kBtn.style.color = '#ffffff';
+        if (modalVideoElement) modalVideoElement.classList.add('ai-4k-enhanced');
         showToast('4K AI Restoration Engine Active! Drag canvas slider to compare.', 'info');
       } else {
         restorationBox.classList.add('hidden');
         toggle4kBtn.classList.remove('active');
         toggle4kBtn.style.background = 'transparent';
         toggle4kBtn.style.color = '#38bdf8';
+        if (modalVideoElement) modalVideoElement.classList.remove('ai-4k-enhanced');
       }
     });
   }
