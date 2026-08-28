@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-app: #090b10;
+  --bg-card: #11141c;
+  --bg-surface: #181b24;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --accent-orange: #EE5F29;
+  --accent-cyan: #38bdf8;
+  --accent-purple: #a78bfa;
+  --accent-emerald: #34d399;
+  --accent-amber: #fbbf24;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Film Emulsion LUT Shaders */
+.lut-standard video { filter: none !important; }
+.lut-kodachrome video { filter: contrast(1.22) saturate(1.48) brightness(0.96) sepia(0.14) hue-rotate(-6deg) !important; }
+.lut-technicolor video { filter: contrast(1.36) saturate(1.78) brightness(1.04) hue-rotate(8deg) !important; }
+.lut-trix video { filter: grayscale(1) contrast(1.48) brightness(0.92) !important; }
+.lut-sepia video { filter: sepia(0.86) contrast(1.18) brightness(0.88) !important; }
+.lut-fuji video { filter: contrast(1.12) saturate(1.2) brightness(1.02) hue-rotate(-12deg) !important; }
+
+/* 4K AI Restorer Filter */
+.ai-4k-enhanced {
+  filter: contrast(1.25) saturate(1.2) brightness(1.05) drop-shadow(0 0 16px rgba(56, 189, 248, 0.45)) !important;
+}
+
+/* Live Pulse Animation */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.15); }
+}
+.live-pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulseGlow 1.8s infinite ease-in-out;
+}
+
+/* Print Certificate Rules */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #printable-certificate, #printable-certificate * {
+    visibility: visible !important;
+  }
+  #printable-certificate {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    border: none !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

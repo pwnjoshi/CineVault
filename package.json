@@ -1,23 +1,35 @@
 {
   "name": "cinevault-studio",
   "version": "1.0.0",
+  "private": true,
   "description": "CineVault Studio — Archival & Stock Footage AI Sourcing Agent on Gemini Enterprise + Parallel",
   "scripts": {
-    "install:all": "cd server && npm install",
-    "build": "cd server && npm run build",
-    "start": "cd server && npm start",
-    "dev": "cd server && npm run dev"
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 4000",
+    "lint": "next lint",
+    "server:build": "cd server && npm run build",
+    "server:start": "cd server && npm start"
   },
-  "keywords": [
-    "agentic-cinema",
-    "gemini-enterprise",
-    "vertex-ai",
-    "parallel-ai",
-    "premiere-pro",
-    "uxp",
-    "stock-footage",
-    "archival-footage"
-  ],
-  "author": "CineVault Studio Contributors",
-  "license": "MIT"
+  "dependencies": {
+    "@clerk/nextjs": "^5.7.5",
+    "@types/canvas-confetti": "^1.9.0",
+    "autoprefixer": "^10.4.20",
+    "canvas-confetti": "^1.9.4",
+    "clsx": "^2.1.1",
+    "hugeicons-react": "^0.4.0",
+    "lucide-react": "^1.35.0",
+    "next": "^14.2.15",
+    "postcss": "^8.4.47",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.6.3"
+  }
 }
