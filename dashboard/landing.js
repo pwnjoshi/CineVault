@@ -89,7 +89,7 @@ function initHeroSearch() {
 
 
 function initAuth() {
-  const saved = localStorage.getItem('reelfind_user');
+  const saved = localStorage.getItem('cinevault_user');
   if (saved) {
     try {
       state.user = JSON.parse(saved);
@@ -146,7 +146,6 @@ function triggerClerkSignIn(targetUrl) {
     role: 'LEAD_EDITOR',
     token: 'token_studio_lead_active'
   };
-  localStorage.setItem('reelfind_user', JSON.stringify(devUser));
   localStorage.setItem('cinevault_user', JSON.stringify(devUser));
   state.user = devUser;
   updateAuthUI();
@@ -160,7 +159,7 @@ function triggerClerkSignIn(targetUrl) {
 function isUserAuthenticated() {
   if (window._clerk && window._clerk.user) return true;
   if (state.user && state.user.token) return true;
-  const saved = localStorage.getItem('reelfind_user');
+  const saved = localStorage.getItem('cinevault_user');
   return !!saved;
 }
 
@@ -207,7 +206,7 @@ function attachEventListeners() {
         await window._clerk.signOut();
       }
       state.user = null;
-      localStorage.removeItem('reelfind_user');
+      localStorage.removeItem('cinevault_user');
       updateAuthUI();
       showToast('Signed out of CineVault Studio', 'alert');
     });

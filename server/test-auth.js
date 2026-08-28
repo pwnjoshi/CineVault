@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 async function testAuth() {
-  console.log('--- Testing Reelfind Authentication & RBAC Authorization ---');
+  console.log('--- Testing CineVault Studio Authentication & RBAC Authorization ---');
 
   // 1. Get Presets
   const presetsRes = await fetch('http://localhost:4000/api/auth/presets');

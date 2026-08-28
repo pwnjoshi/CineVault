@@ -196,7 +196,7 @@ export class GeminiAgentClient {
     steps.push({
       step_number: 4,
       phase: 'pd_risk_analysis',
-      tool_name: 'reelfind_pd_risk_engine',
+      tool_name: 'cinevault_pd_risk_engine',
       tool_input: {
         allowlist: ['archive.org', 'loc.gov', 'catalog.archives.gov', 'nasa.gov', 'commons.wikimedia.org']
       },
@@ -261,7 +261,7 @@ export class GeminiAgentClient {
     steps.push({
       step_number: 5,
       phase: 'rank_shortlist',
-      tool_name: 'reelfind_ranker',
+      tool_name: 'cinevault_ranker',
       tool_input: { sort_criteria: ['relevance_score', 'license_clarity', 'price_transparency'] },
       tool_output: { top_ranked_candidate: finalCandidates[0]?.title || 'None' },
       latency_ms: rankLatency,

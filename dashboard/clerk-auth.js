@@ -127,7 +127,7 @@
         applyClerkUserToUI(clerk);
       } else {
         // Restore local user session if present
-        const savedUserStr = localStorage.getItem('cinevault_user') || localStorage.getItem('reelfind_user');
+        const savedUserStr = localStorage.getItem('cinevault_user');
         if (savedUserStr) {
           try {
             const savedUser = JSON.parse(savedUserStr);
@@ -146,7 +146,7 @@
   } catch (err) {
     console.warn('[Clerk] Init warning:', err);
     // Restore local user session if Clerk fails or is blocked
-    const savedUserStr = localStorage.getItem('cinevault_user') || localStorage.getItem('reelfind_user');
+    const savedUserStr = localStorage.getItem('cinevault_user');
     if (savedUserStr) {
       try {
         const savedUser = JSON.parse(savedUserStr);
@@ -184,7 +184,6 @@
 
     // Persist for page reloads
     localStorage.setItem('cinevault_user', JSON.stringify(userObj));
-    localStorage.setItem('reelfind_user', JSON.stringify(userObj));
 
     // Sync into app state if app.js is loaded
     if (window.state) window.state.user = userObj;
@@ -228,7 +227,6 @@
   // ─── Sign Out ─────────────────────────────────────────────────────────────
   function clearCineVaultUser() {
     localStorage.removeItem('cinevault_user');
-    localStorage.removeItem('reelfind_user');
     sessionStorage.removeItem('cinevault_welcomed_user');
     if (window.state) window.state.user = null;
     if (typeof updateAuthUI === 'function') updateAuthUI();
@@ -296,7 +294,6 @@
             role: 'LEAD_EDITOR',
             token: 'token_studio_lead_active'
           };
-          localStorage.setItem('reelfind_user', JSON.stringify(devUser));
           localStorage.setItem('cinevault_user', JSON.stringify(devUser));
           if (window.state) window.state.user = devUser;
           updateAuthUI();
@@ -320,7 +317,6 @@
             role: 'LEAD_EDITOR',
             token: 'token_studio_lead_active'
           };
-          localStorage.setItem('reelfind_user', JSON.stringify(devUser));
           localStorage.setItem('cinevault_user', JSON.stringify(devUser));
           if (window.state) window.state.user = devUser;
           const authGateModal = document.getElementById('auth-gate-modal');

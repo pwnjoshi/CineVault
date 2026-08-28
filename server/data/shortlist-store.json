@@ -727,6 +727,62 @@
       },
       "monitored": true,
       "saved_at": "2026-08-28T13:15:04.936Z"
+    },
+    {
+      "id": "cand-0652i6-1",
+      "title": "NARA Record Group 174: Industrial Production & Labor Footage",
+      "source_name": "National Archives (NARA)",
+      "source_url": "https://catalog.archives.gov/id/1154823",
+      "thumbnail_url": "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80",
+      "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "price": "$0.00 (US Gov Public Record)",
+      "price_numeric": 0,
+      "license_scope": "Public Domain (US Federal Agency Production)",
+      "resolution": "4K ProRes 422HQ (35mm Archival Scan)",
+      "color_profile": "Monochrome (B&W)",
+      "era": "1960s",
+      "duration": "05:18",
+      "timecode_in": "00:00:22:15",
+      "timecode_out": "00:01:10:00",
+      "pd_claim": "verified",
+      "relevance_score": 0.95,
+      "notes": "Official unclassified historical newsreel scan from the National Archives at College Park, Maryland.",
+      "clearance_details": {
+        "provenance": "Archival repository: National Archives (NARA)",
+        "copyright_status": "Statutory Public Domain",
+        "eo_risk_rating": "LOW (Statutory Public Domain)",
+        "commercial_readiness": "100% Cleared for Worldwide Theatrical & Streaming"
+      },
+      "monitored": true,
+      "saved_at": "2026-08-28T13:18:13.018Z"
+    },
+    {
+      "id": "cand-gt0z3q-1",
+      "title": "NARA Record Group 174: Industrial Production & Labor Footage",
+      "source_name": "National Archives (NARA)",
+      "source_url": "https://catalog.archives.gov/id/1154823",
+      "thumbnail_url": "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80",
+      "preview_video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "price": "$0.00 (US Gov Public Record)",
+      "price_numeric": 0,
+      "license_scope": "Public Domain (US Federal Agency Production)",
+      "resolution": "4K ProRes 422HQ (35mm Archival Scan)",
+      "color_profile": "Monochrome (B&W)",
+      "era": "1960s",
+      "duration": "05:18",
+      "timecode_in": "00:00:22:15",
+      "timecode_out": "00:01:10:00",
+      "pd_claim": "verified",
+      "relevance_score": 0.95,
+      "notes": "Official unclassified historical newsreel scan from the National Archives at College Park, Maryland.",
+      "clearance_details": {
+        "provenance": "Archival repository: National Archives (NARA)",
+        "copyright_status": "Statutory Public Domain",
+        "eo_risk_rating": "LOW (Statutory Public Domain)",
+        "commercial_readiness": "100% Cleared for Worldwide Theatrical & Streaming"
+      },
+      "monitored": true,
+      "saved_at": "2026-08-28T13:23:54.869Z"
     }
   ],
   "monitoredClips": [
@@ -1769,7 +1825,87 @@
           "message": "Parallel Monitor scan verified: Rights status active, zero clearance disputes detected on https://catalog.archives.gov/id/1154823"
         }
       ]
+    },
+    {
+      "id": "mon-1787923093019-101wq",
+      "candidate_id": "cand-0652i6-1",
+      "title": "NARA Record Group 174: Industrial Production & Labor Footage",
+      "source_url": "https://catalog.archives.gov/id/1154823",
+      "source_name": "National Archives (NARA)",
+      "initial_price": "$0.00 (US Gov Public Record)",
+      "current_price": "$0.00 (US Gov Public Record)",
+      "watch_for": "Price or availability change",
+      "status": "active",
+      "last_checked_at": "2026-08-28T13:18:13.019Z",
+      "change_history": [
+        {
+          "timestamp": "2026-08-28T13:18:13.020Z",
+          "message": "Parallel Monitor task registered for URL: https://catalog.archives.gov/id/1154823"
+        }
+      ]
+    },
+    {
+      "id": "mon-1787923093039-icek0",
+      "candidate_id": "cand-0652i6-1",
+      "title": "NARA Record Group 174: Industrial Production & Labor Footage",
+      "source_url": "https://catalog.archives.gov/id/1154823",
+      "source_name": "National Archives (NARA)",
+      "initial_price": "$0.00 (US Gov Public Record)",
+      "current_price": "$0.00 (US Gov Public Record)",
+      "watch_for": "Price discount or license scope alteration",
+      "status": "active",
+      "last_checked_at": "2026-08-28T13:18:13.042Z",
+      "change_history": [
+        {
+          "timestamp": "2026-08-28T13:18:13.039Z",
+          "message": "Parallel Monitor task registered for URL: https://catalog.archives.gov/id/1154823"
+        },
+        {
+          "timestamp": "2026-08-28T13:18:13.042Z",
+          "message": "Parallel Monitor scan verified: Rights status active, zero clearance disputes detected on https://catalog.archives.gov/id/1154823"
+        }
+      ]
+    },
+    {
+      "id": "mon-1787923434870-dlbyp",
+      "candidate_id": "cand-gt0z3q-1",
+      "title": "NARA Record Group 174: Industrial Production & Labor Footage",
+      "source_url": "https://catalog.archives.gov/id/1154823",
+      "source_name": "National Archives (NARA)",
+      "initial_price": "$0.00 (US Gov Public Record)",
+      "current_price": "$0.00 (US Gov Public Record)",
+      "watch_for": "Price or availability change",
+      "status": "active",
+      "last_checked_at": "2026-08-28T13:23:54.870Z",
+      "change_history": [
+        {
+          "timestamp": "2026-08-28T13:23:54.870Z",
+          "message": "Parallel Monitor task registered for URL: https://catalog.archives.gov/id/1154823"
+        }
+      ]
+    },
+    {
+      "id": "mon-1787923434884-qos4n",
+      "candidate_id": "cand-gt0z3q-1",
+      "title": "NARA Record Group 174: Industrial Production & Labor Footage",
+      "source_url": "https://catalog.archives.gov/id/1154823",
+      "source_name": "National Archives (NARA)",
+      "initial_price": "$0.00 (US Gov Public Record)",
+      "current_price": "$0.00 (US Gov Public Record)",
+      "watch_for": "Price discount or license scope alteration",
+      "status": "active",
+      "last_checked_at": "2026-08-28T13:23:54.886Z",
+      "change_history": [
+        {
+          "timestamp": "2026-08-28T13:23:54.884Z",
+          "message": "Parallel Monitor task registered for URL: https://catalog.archives.gov/id/1154823"
+        },
+        {
+          "timestamp": "2026-08-28T13:23:54.886Z",
+          "message": "Parallel Monitor scan verified: Rights status active, zero clearance disputes detected on https://catalog.archives.gov/id/1154823"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-08-28T13:15:04.958Z"
+  "updatedAt": "2026-08-28T13:23:54.886Z"
 }

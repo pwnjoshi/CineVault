@@ -139,7 +139,7 @@ export function startMCPServer() {
     terminal: false
   });
 
-  console.error('[Reelfind MCP Server] Running on stdio. Listening for MCP requests...');
+  console.error('[CineVault Studio MCP Server] Running on stdio. Listening for MCP requests...');
 
   rl.on('line', async (line) => {
     if (!line.trim()) return;

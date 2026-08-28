@@ -4,7 +4,7 @@
  */
 
 (function initTheme() {
-  const THEME_KEY = 'reelfind_theme';
+  const THEME_KEY = 'cinevault_theme';
   const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
 
   // Apply theme to documentElement immediately (always safe in <head>)
@@ -76,7 +76,7 @@
   }
 
   // Expose globally
-  window.toggleReelfindTheme = () => {
+  window.toggleCineVaultTheme = () => {
     const isCurrentlyLight = document.documentElement.classList.contains('light-theme');
     applyTheme(isCurrentlyLight ? 'dark' : 'light');
   };

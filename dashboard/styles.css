@@ -1,5 +1,5 @@
 /* ==========================================================================
-   REELFIND STUDIO DESIGN SYSTEM — Professional Dark UI
+   CINEVAULT STUDIO DESIGN SYSTEM — Professional Dark UI
    ========================================================================== */
 
 :root {
@@ -46,7 +46,7 @@
 }
 
 /* ==========================================================================
-   REELFIND STUDIO DESIGN SYSTEM — Light UI Theme
+   CINEVAULT STUDIO DESIGN SYSTEM — Light UI Theme
    ========================================================================== */
 :root.light-theme,
 [data-theme="light"],

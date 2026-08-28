@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 async function runTests() {
-  console.log('--- Starting Comprehensive Reelfind API Integration Verification ---');
+  console.log('--- Starting Comprehensive CineVault Studio API Integration Verification ---');
   
   // 1. Status Check
   const statusRes = await fetch('http://localhost:4000/api/status');
@@ -56,7 +56,7 @@ async function runTests() {
       body: JSON.stringify({ format: 'edl' })
     });
     const edlText = await exportEdlRes.text();
-    console.log('[4b] CMX 3600 EDL Export Test:', edlText.includes('TITLE: REELFIND') ? 'PASSED' : 'FAILED');
+    console.log('[4b] CMX 3600 EDL Export Test:', edlText.includes('TITLE: CINEVAULT') ? 'PASSED' : 'FAILED');
 
     // 4c. Final Cut Pro FCPXML
     const exportFcpxmlRes = await fetch('http://localhost:4000/api/shortlist/export', {

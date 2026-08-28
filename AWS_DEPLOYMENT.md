@@ -17,7 +17,7 @@ This guide details how to deploy **CineVault Studio** to **Amazon Web Services (
    ```
 2. Open the [AWS App Runner Console](https://console.aws.amazon.com/apprunner).
 3. Click **Create service**.
-4. Select **Source code repository** and connect your GitHub repository (`ReelFind`).
+4. Select **Source code repository** and connect your GitHub repository (`cinevault-studio`).
 5. Set deployment settings:
    - **Deployment trigger:** Automatic
    - **Build command:** `npm run build`

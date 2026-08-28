@@ -1,7 +1,7 @@
 const { handleMCPToolCall } = require('./dist/mcp-server');
 
 async function testMCP() {
-  console.log('--- Testing Reelfind MCP Server Tools ---');
+  console.log('--- Testing CineVault Studio MCP Server Tools ---');
   
   const searchResult = await handleMCPToolCall('parallel_search', {
     objective: '1960s factory floor',

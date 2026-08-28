@@ -649,7 +649,7 @@ function initAuthGate() {
   }
 
   // Restore active user session on app start
-  const savedUserStr = localStorage.getItem('cinevault_user') || localStorage.getItem('reelfind_user');
+  const savedUserStr = localStorage.getItem('cinevault_user');
   if (savedUserStr) {
     try {
       state.user = JSON.parse(savedUserStr);
@@ -666,7 +666,6 @@ function initAuthGate() {
       token: 'token_studio_lead_active'
     };
     localStorage.setItem('cinevault_user', JSON.stringify(state.user));
-    localStorage.setItem('reelfind_user', JSON.stringify(state.user));
   }
 
   const authGateModal = document.getElementById('auth-gate-modal');
