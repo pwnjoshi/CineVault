@@ -1,0 +1,11 @@
+node_modules
+server/node_modules
+.git
+.agents
+dist
+server/dist
+.env
+.env.local
+server/.env
+server/.env.local
+*.log
