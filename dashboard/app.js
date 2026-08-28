@@ -4,7 +4,7 @@
  */
 
 import { state, getApiUrl, escapeHtml, formatTimecode, showToast } from './modules/state.js';
-import { renderCandidates, renderShortlist, updateShortlistBadge, selectCandidateForInspector, addToShortlist, removeFromShortlist } from './modules/candidates.js';
+import { renderCandidates, renderShortlist, updateShortlistBadge, selectCandidateForInspector, addToShortlist, removeFromShortlist, getSampleCandidates } from './modules/candidates.js';
 import { openVideoPlayerModal, closeVideoPlayerModal, initPlayerControls } from './modules/player.js';
 import { initScriptTimelineModule, executeScriptToTimeline } from './modules/script-timeline.js';
 import { initMoodboardModule } from './modules/moodboard.js';
@@ -152,20 +152,24 @@ async function executeSearch() {
   if (btnSpinner) btnSpinner.classList.remove('hidden');
   if (searchBtn) searchBtn.disabled = true;
 
+  const parallelModeSelect = document.getElementById('parallel-mode-select');
+  const mode = parallelModeSelect ? parallelModeSelect.value : 'fast';
+
   try {
     const response = await fetch(getApiUrl('/api/search-footage'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         shot_query: query,
-        filters: state.filters
+        filters: state.filters,
+        mode: mode
       })
     });
 
     const data = await response.json();
 
-    if (data.success) {
-      state.candidates = data.candidates || [];
+    if (data.success && data.candidates) {
+      state.candidates = data.candidates;
       state.latestTrace = data.trace;
 
       renderExecutionTrace(data.trace);

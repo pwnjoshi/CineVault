@@ -302,3 +302,68 @@ export async function removeFromShortlist(id) {
 
   showToast('Removed item from shortlist', 'info');
 }
+
+export function getSampleCandidates() {
+  return [
+    {
+      id: 'clip_nara_174_factory',
+      title: 'NARA Record Group 174: Industrial Production & Labor Footage (1960s Factory Assembly Line)',
+      source_url: 'https://catalog.archives.gov/id/1154823',
+      source_name: 'National Archives and Records Administration (NARA)',
+      provenance: 'US National Archives (NARA RG 174.2)',
+      price: '$0.00 (US Gov Public Record)',
+      price_numeric: 0,
+      license_scope: 'Public Domain (US Federal Agency Production)',
+      pd_claim: 'verified',
+      resolution: '4K ProRes 422HQ (35mm Archival Scan)',
+      color_profile: 'Monochrome (B&W)',
+      era: '1960s',
+      duration: '05:18',
+      timecode_in: '00:00:22:15',
+      timecode_out: '00:01:10:00',
+      thumbnail_url: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+      preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+      notes: 'Verified institutional repository (catalog.archives.gov). Historical records confirmed public domain under statutory 17 U.S.C. § 105.'
+    },
+    {
+      id: 'clip_ucla_hearst_1964',
+      title: 'UCLA Hearst Metrotone Newsreel: American Manufacturing & Heavy Industry (1964)',
+      source_url: 'https://www.cinema.ucla.edu/collections/hearst',
+      source_name: 'UCLA Film & Television Archive',
+      provenance: 'Hearst Metrotone News Collection (Preservation Master)',
+      price: '$45.00 / second (Academic/Doc License)',
+      price_numeric: 45,
+      license_scope: 'Editorial Documentary Worldwide Rights',
+      pd_claim: 'not_claimed',
+      resolution: '2K DPX Master (35mm Nitrate Preservation)',
+      color_profile: 'Nitrate 35mm B&W',
+      era: '1960s',
+      duration: '03:42',
+      timecode_in: '00:00:10:00',
+      timecode_out: '00:00:45:00',
+      thumbnail_url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+      preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      notes: 'UCLA Archive preservation scan with clear metadata and verified provenance.'
+    },
+    {
+      id: 'clip_bfi_industrial_1960',
+      title: 'BFI National Archive: 20th Century Industrial & Newsreel Collection (Steel Stamping)',
+      source_url: 'https://collections-search.bfi.org.uk/web/Details/ChoiceArchive/150000000',
+      source_name: 'British Film Institute (BFI Archive)',
+      provenance: 'BFI National Film and Television Archive (London)',
+      price: '$65.00 / clip (Broadcast & Web License)',
+      price_numeric: 65,
+      license_scope: 'Non-Exclusive Theatrical & Streaming',
+      pd_claim: 'not_claimed',
+      resolution: '1080p ProRes 422 (16mm Safety Negative)',
+      color_profile: 'Silver Halide 35mm B&W',
+      era: '1960s',
+      duration: '04:12',
+      timecode_in: '00:01:05:00',
+      timecode_out: '00:01:40:00',
+      thumbnail_url: 'https://images.unsplash.com/photo-1518676599626-5cd8c2d3c850?auto=format&fit=crop&w=800&q=80',
+      preview_video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+      notes: 'BFI archival master with complete rights documentation.'
+    }
+  ];
+}

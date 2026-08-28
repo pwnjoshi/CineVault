@@ -189,6 +189,23 @@ async function runComprehensiveAudit() {
   } catch (e) {
     assert(false, 'API: LUT Generator', e.message);
   }
+  // 11. Audit Direct Automated Licensing & Clearance Checkout
+  try {
+    const licRes = await fetch('http://localhost:4000/api/licensing/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        clip_id: 'clip_nara_174_factory',
+        source_url: 'https://catalog.archives.gov/id/1154823',
+        license_tier: 'editorial_worldwide',
+        project_title: 'Historical Documentary Production'
+      })
+    });
+    const licJson = await licRes.json();
+    assert(licJson.success === true && !!licJson.data?.transaction_id && !!licJson.data?.license_agreement?.certificate_id, 'API: Direct Automated Licensing & Clearance Checkout');
+  } catch (e) {
+    assert(false, 'API: Licensing Checkout', e.message);
+  }
 
   console.log('\n=====================================================');
   console.log(`  AUDIT RESULT: ${passed} / ${total} CHECKS PASSED (${Math.round(passed / total * 100)}%)`);

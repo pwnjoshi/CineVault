@@ -3438,5 +3438,131 @@ body.light-theme #sign-in-btn {
   margin: 0;
 }
 
+/* ==========================================================================
+   ENHANCED STUDIO SPOTLIGHT CARDS & MODERN HOVER EFFECTS
+   ========================================================================== */
+.spotlight-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.spotlight-card {
+  background: linear-gradient(145deg, rgba(22, 27, 40, 0.75), rgba(13, 16, 26, 0.9));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, var(--card-glow, rgba(238, 95, 41, 0.15)), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.spotlight-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--card-border-glow, rgba(238, 95, 41, 0.45));
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 25px var(--card-shadow-glow, rgba(238, 95, 41, 0.15));
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.spotlight-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.spotlight-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.spotlight-card:hover .spotlight-icon-box {
+  transform: scale(1.08);
+}
+
+.spotlight-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spotlight-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.spotlight-badge {
+  font-size: 9px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid;
+  align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.spotlight-sub {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.spotlight-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 0.85rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.spotlight-arrow {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  transition: transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.spotlight-card:hover .spotlight-arrow {
+  transform: translateX(4px);
+}
+
+
 
 
