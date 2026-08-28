@@ -104,6 +104,9 @@
         </a>
         
         <!-- Authentication & User Profile Control -->
+        <button class="nav-btn" id="landing-demo-btn" onclick="if (window.loginAsDemoLeadEditor) window.loginAsDemoLeadEditor(); window.location.href='/dashboard';" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399; font-weight: 700;">
+          ⚡ Demo Editor
+        </button>
         <button class="nav-btn primary" id="sign-in-btn" style="background-color: #EE5F29; border-color: #EE5F29;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           Sign In
@@ -653,8 +656,8 @@
   </div>
 
   <div id="toast-container" class="toast-stack"></div>
-  <script src="landing.js"></script>
-  <script src="clerk-auth.js"></script>
+  <script src="landing.js?v=20260828-5"></script>
+  <script src="clerk-auth.js?v=20260828-5"></script>
 </body>
 </html>
 

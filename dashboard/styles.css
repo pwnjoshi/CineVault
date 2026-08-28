@@ -3589,6 +3589,187 @@ body.light-theme #sign-in-btn {
   transform: translateX(4px);
 }
 
+/* ==========================================================================
+   Showstopper 1: Real-time Film Emulsion & 3D LUT Colorist Studio Filters
+   ========================================================================== */
+.theater-stage.lut-standard video,
+.theater-stage[data-lut="standard"] video {
+  filter: none !important;
+}
+
+.theater-stage.lut-kodachrome video,
+.theater-stage[data-lut="kodachrome"] video {
+  filter: contrast(1.22) saturate(1.48) brightness(0.96) sepia(0.14) hue-rotate(-6deg) !important;
+}
+
+.theater-stage.lut-technicolor video,
+.theater-stage[data-lut="technicolor"] video {
+  filter: contrast(1.36) saturate(1.78) brightness(1.04) hue-rotate(8deg) !important;
+}
+
+.theater-stage.lut-trix video,
+.theater-stage[data-lut="trix"] video {
+  filter: grayscale(1) contrast(1.48) brightness(0.92) !important;
+}
+
+.theater-stage.lut-sepia video,
+.theater-stage[data-lut="sepia"] video {
+  filter: sepia(0.86) contrast(1.18) brightness(0.88) !important;
+}
+
+.theater-stage.lut-fuji video,
+.theater-stage[data-lut="fuji"] video {
+  filter: contrast(1.12) saturate(1.2) brightness(1.02) hue-rotate(-12deg) !important;
+}
+
+/* ==========================================================================
+   Showstopper 2: Visual NLE Multi-Track Sequence Bar & Scrubber
+   ========================================================================== */
+.timeline-scrubber-track {
+  position: relative;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  user-select: none;
+}
+
+.timeline-playhead-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #f43f5e;
+  box-shadow: 0 0 8px #f43f5e;
+  z-index: 10;
+  pointer-events: none;
+  transition: left 0.1s linear;
+}
+
+.timeline-playhead-handle {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 12px;
+  height: 8px;
+  background: #f43f5e;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.scene-block.active-scene {
+  border-color: #EE5F29 !important;
+  box-shadow: 0 0 14px rgba(238, 95, 41, 0.6) !important;
+  background: rgba(238, 95, 41, 0.45) !important;
+}
+
+/* ==========================================================================
+   Showstopper 3: Floating Live Parallel & Gemini Telemetry HUD
+   ========================================================================== */
+.telemetry-hud-container {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 999;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.telemetry-hud-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 17, 23, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(124, 58, 237, 0.45);
+  border-radius: 24px;
+  padding: 6px 14px;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+.telemetry-hud-pill:hover {
+  border-color: #a78bfa;
+  transform: translateY(-2px);
+}
+
+.telemetry-hud-panel {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  width: 380px;
+  background: rgba(15, 17, 23, 0.98);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.telemetry-waterfall-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+  border-left: 3px solid;
+}
+
+/* ==========================================================================
+   Showstopper 4: Official E&O Certificate Print & Modal Styling
+   ========================================================================== */
+.official-certificate-container {
+  background: #ffffff;
+  color: #0f172a;
+  padding: 2.5rem;
+  border: 4px double #cbd5e1;
+  border-radius: 8px;
+  font-family: 'Times New Roman', Times, serif;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.certificate-header-seal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 1rem;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .official-certificate-container,
+  .official-certificate-container * {
+    visibility: visible;
+  }
+  .official-certificate-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    border: none;
+    box-shadow: none;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+
 
 
 

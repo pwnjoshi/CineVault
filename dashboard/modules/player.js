@@ -327,7 +327,7 @@ export function initPlayerControls() {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.vf-btn[data-lut]').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const lut = btn.getAttribute('data-lut');
+      const lut = btn.getAttribute('data-lut') || 'standard';
       const stage = document.getElementById('theater-stage-container');
       const activeAspectBtn = document.querySelector('.vf-btn[data-aspect].active');
       const aspect = activeAspectBtn ? activeAspectBtn.getAttribute('data-aspect') : '16-9';
@@ -335,9 +335,26 @@ export function initPlayerControls() {
         stage.className = `theater-stage aspect-${aspect} lut-${lut}`;
         stage.setAttribute('data-lut', lut);
       }
-      showToast(`Stock LUT Applied: ${btn.textContent.trim()}`, 'info');
+      
+      const modalVid = document.getElementById('modal-video-element');
+      if (modalVid) {
+        modalVid.setAttribute('data-active-lut', lut);
+      }
+      showToast(`Applied Film Emulsion: ${btn.textContent.trim()}`, 'info');
     });
   });
+
+  const exportLutBtn = document.getElementById('download-lut-cube-btn');
+  if (exportLutBtn) {
+    exportLutBtn.addEventListener('click', () => {
+      const activeLutBtn = document.querySelector('.vf-btn[data-lut].active');
+      const lutName = activeLutBtn ? activeLutBtn.getAttribute('data-lut') : 'kodachrome';
+      const lutTitle = activeLutBtn ? activeLutBtn.textContent.trim() : 'Kodachrome 64';
+      
+      window.open(getApiUrl(`/api/lut-generator?preset=${encodeURIComponent(lutName)}`), '_blank');
+      showToast(`Exported ${lutTitle} 3D LUT (.cube) for Premiere & DaVinci!`, 'success');
+    });
+  }
 
   // 4K AI Restoration interactive split slider
   const beforeLayer = document.getElementById('restoration-before-layer');

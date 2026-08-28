@@ -280,24 +280,63 @@
       });
     }
 
+    window.loginAsDemoLeadEditor = function() {
+      const demoUser = {
+        id: 'usr_demo_lead_editor',
+        name: 'Pawan Joshi',
+        email: 'joshipawan2021@gmail.com',
+        avatar: 'PJ',
+        role: 'LEAD_EDITOR',
+        roleTitle: 'Lead Film Editor & Colorist',
+        token: 'token_demo_lead_editor_active',
+        provider: 'demo'
+      };
+      localStorage.setItem('cinevault_user', JSON.stringify(demoUser));
+      if (window.state) window.state.user = demoUser;
+      
+      const authGateModal = document.getElementById('auth-gate-modal');
+      if (authGateModal) authGateModal.classList.add('hidden');
+      
+      const signInBtn = document.getElementById('sign-in-btn');
+      const userProfileWrapper = document.getElementById('user-profile-wrapper');
+      if (signInBtn) signInBtn.classList.add('hidden');
+      if (userProfileWrapper) userProfileWrapper.classList.remove('hidden');
+      
+      const userNameText = document.getElementById('user-name-text');
+      const userAvatarText = document.getElementById('user-avatar-text');
+      const dropdownUserName = document.getElementById('dropdown-user-name');
+      const dropdownUserEmail = document.getElementById('dropdown-user-email');
+      if (userNameText) userNameText.textContent = demoUser.name;
+      if (userAvatarText) userAvatarText.textContent = demoUser.avatar;
+      if (dropdownUserName) dropdownUserName.textContent = demoUser.name;
+      if (dropdownUserEmail) dropdownUserEmail.textContent = demoUser.email;
+
+      showClerkToast('Signed in as Demo Lead Editor (Full Unlocked Studio Access)!');
+    };
+
+    const demoLoginBtn = document.getElementById('demo-login-btn');
+    if (demoLoginBtn) {
+      demoLoginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.loginAsDemoLeadEditor();
+      });
+    }
+
+    const authGateDemoBtn = document.getElementById('auth-gate-demo-btn');
+    if (authGateDemoBtn) {
+      authGateDemoBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.loginAsDemoLeadEditor();
+      });
+    }
+
     if (signInBtn) {
       signInBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (window._clerk && typeof window._clerk.openSignIn === 'function') {
           window._clerk.openSignIn();
         } else {
-          const devUser = {
-            id: 'usr_studio_lead',
-            name: 'Pawan Joshi',
-            email: 'joshipawan2021@gmail.com',
-            avatar: 'PJ',
-            role: 'LEAD_EDITOR',
-            token: 'token_studio_lead_active'
-          };
-          localStorage.setItem('cinevault_user', JSON.stringify(devUser));
-          if (window.state) window.state.user = devUser;
-          updateAuthUI();
-          showClerkToast('Signed in to CineVault Studio!');
+          window.loginAsDemoLeadEditor();
         }
       });
     }
@@ -309,20 +348,7 @@
         if (window._clerk && typeof window._clerk.openSignIn === 'function') {
           window._clerk.openSignIn();
         } else {
-          const devUser = {
-            id: 'usr_studio_lead',
-            name: 'Pawan Joshi',
-            email: 'joshipawan2021@gmail.com',
-            avatar: 'PJ',
-            role: 'LEAD_EDITOR',
-            token: 'token_studio_lead_active'
-          };
-          localStorage.setItem('cinevault_user', JSON.stringify(devUser));
-          if (window.state) window.state.user = devUser;
-          const authGateModal = document.getElementById('auth-gate-modal');
-          if (authGateModal) authGateModal.classList.add('hidden');
-          if (typeof updateAuthUI === 'function') updateAuthUI();
-          showClerkToast('Signed in to CineVault Studio!');
+          window.loginAsDemoLeadEditor();
         }
       });
     }

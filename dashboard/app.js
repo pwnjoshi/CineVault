@@ -270,6 +270,8 @@ function initWorkspaceTabs() {
   const spotlightScript = document.getElementById('spotlight-script-btn');
   const spotlightMoodboard = document.getElementById('spotlight-moodboard-btn');
   const spotlightViewfinder = document.getElementById('spotlight-viewfinder-btn');
+  const spotlightAudio = document.getElementById('spotlight-audio-btn');
+  const spotlightLut = document.getElementById('spotlight-lut-export-btn');
 
   if (spotlightScript) {
     spotlightScript.addEventListener('click', () => {
@@ -323,6 +325,29 @@ function initWorkspaceTabs() {
         openVideoPlayerModal(targetClip);
         showToast('Cinema Viewfinder & Film Stock Simulator active!', 'info');
       }
+    });
+  }
+
+  if (spotlightAudio) {
+    spotlightAudio.addEventListener('click', () => {
+      const tab = document.querySelector('[data-tab="audio-tab"]');
+      if (tab) tab.click();
+      showToast('Period Audio Foley & Voiceover Alignment active!', 'info');
+    });
+  }
+
+  if (spotlightLut) {
+    spotlightLut.addEventListener('click', () => {
+      if (!state.candidates || state.candidates.length === 0) {
+        state.candidates = getSampleCandidates();
+        renderCandidates();
+      }
+      const targetClip = state.candidates[0] || getSampleCandidates()[0];
+      if (targetClip) {
+        openVideoPlayerModal(targetClip);
+      }
+      const downloadBtn = document.getElementById('download-lut-cube-btn');
+      if (downloadBtn) downloadBtn.click();
     });
   }
 }
@@ -578,11 +603,8 @@ function initAuthGate() {
   const handleSignInClick = () => {
     if (window._clerk) {
       window._clerk.openSignIn();
-    } else {
-      showToast('Connecting to Clerk Authentication...', 'info');
-      setTimeout(() => {
-        if (window._clerk) window._clerk.openSignIn();
-      }, 800);
+    } else if (window.loginAsDemoLeadEditor) {
+      window.loginAsDemoLeadEditor();
     }
   };
 
@@ -599,16 +621,34 @@ function initAuthGate() {
     }
   }
 
-  if (state.user) {
-    if (authGateModal) authGateModal.classList.add('hidden');
-    if (signInBtn) signInBtn.classList.add('hidden');
-    if (userProfileWrapper) userProfileWrapper.classList.remove('hidden');
-  } else {
-    // Show Auth Gate prompt for unauthenticated studio visitors
-    if (authGateModal) authGateModal.classList.remove('hidden');
-    if (signInBtn) signInBtn.classList.remove('hidden');
-    if (userProfileWrapper) userProfileWrapper.classList.add('hidden');
+  // Zero-friction Demo Lead Editor Auto-Login:
+  // If no user session is present, automatically initialize as Lead Editor so no modal blocks the screen
+  if (!state.user) {
+    state.user = {
+      id: 'usr_demo_lead_editor',
+      name: 'Pawan Joshi',
+      email: 'joshipawan2021@gmail.com',
+      avatar: 'PJ',
+      role: 'LEAD_EDITOR',
+      roleTitle: 'Lead Film Editor & Colorist',
+      token: 'token_demo_lead_editor_active',
+      provider: 'demo'
+    };
+    localStorage.setItem('cinevault_user', JSON.stringify(state.user));
   }
+
+  if (authGateModal) authGateModal.classList.add('hidden');
+  if (signInBtn) signInBtn.classList.add('hidden');
+  if (userProfileWrapper) userProfileWrapper.classList.remove('hidden');
+
+  const userNameText = document.getElementById('user-name-text');
+  const userAvatarText = document.getElementById('user-avatar-text');
+  const dropdownUserName = document.getElementById('dropdown-user-name');
+  const dropdownUserEmail = document.getElementById('dropdown-user-email');
+  if (userNameText) userNameText.textContent = state.user.name;
+  if (userAvatarText) userAvatarText.textContent = state.user.avatar;
+  if (dropdownUserName) dropdownUserName.textContent = state.user.name;
+  if (dropdownUserEmail) dropdownUserEmail.textContent = state.user.email;
 }
 
 function initParallelInspectorModal() {
@@ -644,6 +684,22 @@ function initParallelInspectorModal() {
       } finally {
         runTestBtn.disabled = false;
         runTestBtn.textContent = '▶ Run Live Parallel API Test';
+      }
+    });
+  }
+
+  // Floating Telemetry HUD Toggle
+  const hudBtn = document.getElementById('telemetry-hud-toggle-btn');
+  const hudDrawer = document.getElementById('telemetry-hud-drawer');
+  if (hudBtn && hudDrawer) {
+    hudBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hudDrawer.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (hudDrawer && !hudDrawer.contains(e.target) && !hudBtn.contains(e.target)) {
+        hudDrawer.classList.add('hidden');
       }
     });
   }

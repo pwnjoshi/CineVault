@@ -64,6 +64,9 @@
         </a>
         
         <!-- Authentication & User Profile Control -->
+        <button class="nav-btn" id="demo-login-btn" onclick="if (window.loginAsDemoLeadEditor) window.loginAsDemoLeadEditor();" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399; font-weight: 700;">
+          ⚡ Demo Editor
+        </button>
         <button class="nav-btn primary" id="sign-in-btn" style="background-color: #EE5F29; border-color: #EE5F29; color: #ffffff;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           Sign In
@@ -615,6 +618,10 @@
           <button class="vf-btn" data-lut="emerald">Matrix Emerald</button>
         </div>
         <div class="viewfinder-group">
+          <button class="vf-btn" id="download-lut-cube-btn" style="border-color: rgba(245,158,11,0.4); color: #fbbf24; font-weight: 700;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export .cube LUT
+          </button>
           <button class="vf-btn" id="toggle-4k-restoration-btn" style="border-color: rgba(56,189,248,0.4); color: #38bdf8; font-weight: 700;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:3px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             4K AI Restorer
@@ -786,12 +793,57 @@
       <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.5rem;">
         Sign in to access licensed archive bins, E&O legal clearance certificates, and NLE timeline synchronization.
       </p>
-      <button id="auth-gate-sign-in-btn" class="action-btn primary" style="width: 100%; justify-content: center; padding: 10px; font-size: 13px; font-weight: 600; background: #6c47ff; border-color: #6c47ff; color: #fff;">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-        Sign In with Clerk
-      </button>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <button id="auth-gate-sign-in-btn" class="action-btn primary" style="width: 100%; justify-content: center; padding: 10px; font-size: 13px; font-weight: 600; background: #6c47ff; border-color: #6c47ff; color: #fff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Sign In with Clerk
+        </button>
+        <button id="auth-gate-demo-btn" onclick="if (window.loginAsDemoLeadEditor) window.loginAsDemoLeadEditor();" class="action-btn" style="width: 100%; justify-content: center; padding: 10px; font-size: 13px; font-weight: 700; background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
+          ⚡ Continue as Demo Lead Editor (1-Click Instant)
+        </button>
+      </div>
       <div style="margin-top: 1rem;">
         <a href="/" style="font-size: 12px; color: var(--text-muted); text-decoration: none;">← Return to Public Overview</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Live Parallel & Gemini Telemetry HUD -->
+  <div class="telemetry-hud-container" id="telemetry-hud-root">
+    <div class="telemetry-hud-pill" id="telemetry-hud-toggle-btn">
+      <span class="live-pulse" style="background: #a78bfa; box-shadow: 0 0 8px #a78bfa;"></span>
+      <span style="font-weight: 700; color: #a78bfa;">Parallel API &amp; MCP HUD</span>
+      <span id="telemetry-live-latency" style="color: #34d399; font-size: 10.5px;">820ms</span>
+    </div>
+
+    <div class="telemetry-hud-panel hidden" id="telemetry-hud-drawer">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">
+        <strong style="color: #fff; font-size: 11.5px;">⚡ Live Parallel Engine Telemetry</strong>
+        <span style="font-size: 9.5px; color: #34d399; background: rgba(16,185,129,0.12); padding: 1px 5px; border-radius: 3px;">100% ONLINE</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 5px;">
+        <div class="telemetry-waterfall-bar" style="border-color: #a78bfa;">
+          <span>Parallel Search (/v1/search)</span>
+          <strong style="color: #a78bfa;">214ms</strong>
+        </div>
+        <div class="telemetry-waterfall-bar" style="border-color: #38bdf8;">
+          <span>Parallel Extract (/v1/extract)</span>
+          <strong style="color: #38bdf8;">178ms</strong>
+        </div>
+        <div class="telemetry-waterfall-bar" style="border-color: #EE5F29;">
+          <span>Gemini Pro Multi-Step Reasoning</span>
+          <strong style="color: #EE5F29;">412ms</strong>
+        </div>
+        <div class="telemetry-waterfall-bar" style="border-color: #10b981;">
+          <span>17 U.S.C. § 105 Statutory PD Audit</span>
+          <strong style="color: #10b981;">16ms</strong>
+        </div>
+      </div>
+
+      <div style="font-size: 10px; color: var(--text-muted); line-height: 1.4; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 6px;">
+        <div>Connected: <strong>15 Global Archives</strong> (NARA, LOC, NASA, BFI, INA, UCLA, EFG, Smithsonian)</div>
+        <div>MCP Server: <code>mcp-server.ts</code> active on stdio &amp; HTTP</div>
       </div>
     </div>
   </div>
@@ -799,7 +851,7 @@
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-stack"></div>
 
-  <script type="module" src="app.js"></script>
-  <script src="clerk-auth.js"></script>
+  <script type="module" src="app.js?v=20260828-5"></script>
+  <script src="clerk-auth.js?v=20260828-5"></script>
 </body>
 </html>
