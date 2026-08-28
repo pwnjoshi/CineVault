@@ -33,6 +33,7 @@ import imageSearchRouter from './routes/image-search';
 import certificateRouter from './routes/certificate';
 import audioToTimelineRouter from './routes/audio-to-timeline';
 import videoIntelligenceRouter from './routes/video-intelligence';
+import lutGeneratorRouter from './routes/lut-generator';
 import { globalApiLimiter, searchOrchestrationLimiter, mutationLimiter } from './rate-limiter';
 
 const app = express();
@@ -80,6 +81,7 @@ app.use('/api/search-footage', searchOrchestrationLimiter, searchFootageRouter);
 app.use('/api/script-to-timeline', searchOrchestrationLimiter, scriptRouter);
 app.use('/api/audio-to-timeline', searchOrchestrationLimiter, audioToTimelineRouter);
 app.use('/api/video-intelligence', searchOrchestrationLimiter, videoIntelligenceRouter);
+app.use('/api/lut-generator', lutGeneratorRouter);
 app.use('/api/image-search', searchOrchestrationLimiter, imageSearchRouter);
 app.use('/api/legal-certificate', certificateRouter);
 app.use('/api/shortlist', mutationLimiter, shortlistRouter);

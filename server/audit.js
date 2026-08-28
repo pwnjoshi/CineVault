@@ -181,6 +181,14 @@ async function runComprehensiveAudit() {
   } catch (e) {
     assert(false, 'API: Video Intelligence', e.message);
   }
+  // 10. Audit Telecine Color Grade & 3D LUT (.cube) Generator
+  try {
+    const lutRes = await fetch('http://localhost:4000/api/lut-generator/generate?film_stock=1960s%20Technicolor%2035mm&format=cube');
+    const lutText = await lutRes.text();
+    assert(lutText.includes('LUT_3D_SIZE') && lutText.includes('TITLE "CineVault'), 'API: Telecine Color Grade & 3D LUT (.cube) Generator');
+  } catch (e) {
+    assert(false, 'API: LUT Generator', e.message);
+  }
 
   console.log('\n=====================================================');
   console.log(`  AUDIT RESULT: ${passed} / ${total} CHECKS PASSED (${Math.round(passed / total * 100)}%)`);
