@@ -27,19 +27,7 @@ export default function Header() {
         setUser(null);
       }
     } else {
-      // Default demo lead editor
-      const demo: UserSession = {
-        id: 'usr_demo_lead_editor',
-        name: 'Pawan Joshi',
-        email: 'joshipawan2021@gmail.com',
-        avatar: 'PJ',
-        role: 'LEAD_EDITOR',
-        roleTitle: 'Lead Film Editor & Colorist',
-        token: 'token_demo_lead_editor_active',
-        provider: 'demo'
-      };
-      localStorage.setItem('cinevault_user', JSON.stringify(demo));
-      setUser(demo);
+      setUser(null);
     }
   }, []);
 
