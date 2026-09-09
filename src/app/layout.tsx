@@ -18,7 +18,25 @@ export default function RootLayout({
 
   return (
     <ClerkProvider publishableKey={clerkPubKey}>
-      <html lang="en" className="dark">
+      <html lang="en" className="dark" suppressHydrationWarning>
+        <head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                try {
+                  const t = localStorage.getItem('cinevault_theme');
+                  if (t === 'light') {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                  } else {
+                    document.documentElement.classList.remove('light');
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {}
+              `,
+            }}
+          />
+        </head>
         <body className="bg-[#090b10] text-slate-100 antialiased min-h-screen flex flex-col font-sans">
           <Header />
           <div className="flex-1">

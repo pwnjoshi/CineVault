@@ -29,14 +29,29 @@ export default function Header() {
     } else {
       setUser(null);
     }
+
+    const savedTheme = localStorage.getItem('cinevault_theme') as 'dark' | 'light' | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      } else {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+      }
+    }
   }, []);
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
     setTheme(next);
+    localStorage.setItem('cinevault_theme', next);
     if (next === 'light') {
       document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
     } else {
+      document.documentElement.classList.remove('light');
       document.documentElement.classList.add('dark');
     }
   };

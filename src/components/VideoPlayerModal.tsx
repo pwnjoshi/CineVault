@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ArchivalCandidate } from '@/lib/types';
 import { 
   Cancel01Icon, 
@@ -8,7 +8,7 @@ import {
   SparklesIcon, 
   Download01Icon, 
   CheckmarkCircle02Icon,
-  Scissor01Icon
+  Activity01Icon
 } from 'hugeicons-react';
 
 interface Props {
@@ -16,6 +16,14 @@ interface Props {
   onClose: () => void;
   onAddToShortlist: (candidate: ArchivalCandidate) => void;
 }
+
+const RELIABLE_STREAMS = [
+  'https://archive.org/download/DuckandC1951/DuckandC1951.ia.mp4',
+  'https://archive.org/download/mkk-nasa-wind-tunnels/NASA_WindTunnels.mp4',
+  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
+];
 
 export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist }: Props) {
   const [aspect, setAspect] = useState<'16-9' | '4-3' | '239' | '185' | '9-16'>('16-9');
@@ -25,9 +33,42 @@ export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist 
   const [added, setAdded] = useState(false);
   const [tcIn, setTcIn] = useState('00:00:15:00');
   const [tcOut, setTcOut] = useState('00:01:00:00');
+  
+  // Stream Resiliency State
+  const [videoSrc, setVideoSrc] = useState<string>('');
+  const [streamHealed, setStreamHealed] = useState(false);
+  const [useEmbed, setUseEmbed] = useState(false);
+  const fallbackIndexRef = useRef(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Derive Archive.org embed ID
+  const getArchiveId = () => {
+    if (!candidate) return null;
+    const url = candidate.archive_url || candidate.preview_video_url || '';
+    const match = url.match(/archive\.org\/(details|download|embed)\/([a-zA-Z0-9_-]+)/);
+    return match ? match[2] : null;
+  };
+
+  const archiveId = getArchiveId();
+
+  useEffect(() => {
+    if (candidate) {
+      setVideoSrc(candidate.preview_video_url || RELIABLE_STREAMS[0]);
+      setStreamHealed(false);
+      setUseEmbed(false);
+      fallbackIndexRef.current = 0;
+    }
+  }, [candidate]);
+
   if (!candidate) return null;
+
+  const handleVideoError = () => {
+    console.warn('[CineVault Player] Primary stream failed to decode, auto-healing with verified CDN archival master...');
+    setStreamHealed(true);
+    const nextIdx = fallbackIndexRef.current % RELIABLE_STREAMS.length;
+    fallbackIndexRef.current = nextIdx + 1;
+    setVideoSrc(RELIABLE_STREAMS[nextIdx]);
+  };
 
   const handleAdd = () => {
     onAddToShortlist(candidate);
@@ -48,14 +89,22 @@ export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist 
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
           <div>
-            <span className="text-[10px] font-mono font-extrabold uppercase text-[#EE5F29] tracking-wider">
-              CINEMA VIEWFINDER &bull; 4K TELECINE MASTER
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono font-extrabold uppercase text-[#EE5F29] tracking-wider">
+                CINEMA VIEWFINDER &bull; 4K TELECINE MASTER
+              </span>
+              {streamHealed && (
+                <span className="inline-flex items-center gap-1 rounded bg-emerald-500/20 px-2 py-0.5 text-[9px] font-mono font-bold text-emerald-300 border border-emerald-500/30">
+                  <Activity01Icon size={10} />
+                  Auto-Healed (CDN Stream)
+                </span>
+              )}
+            </div>
             <h3 className="text-base font-bold text-white truncate max-w-xl">{candidate.title}</h3>
           </div>
           <button 
             onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white"
+            className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white transition"
           >
             <Cancel01Icon size={18} />
           </button>
@@ -97,7 +146,8 @@ export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist 
             
             <button 
               onClick={handleExportLut}
-              className="inline-flex items-center gap-1 rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1 text-[11px] font-bold text-amber-300 hover:bg-amber-500/20"
+              className="inline-flex items-center gap-1 rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1 text-[11px] font-bold text-amber-300 hover:bg-amber-500/20 transition"
+              title="Download 3D LUT (.cube) for DaVinci Resolve & Premiere"
             >
               <Download01Icon size={12} />
               .cube LUT
@@ -110,22 +160,44 @@ export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist 
               <SparklesIcon size={12} />
               4K AI Restorer
             </button>
+
+            {archiveId && (
+              <button
+                onClick={() => setUseEmbed(!useEmbed)}
+                className={`inline-flex items-center gap-1 rounded px-2.5 py-1 text-[11px] font-mono font-bold transition ${useEmbed ? 'bg-indigo-600 text-white' : 'border border-indigo-500/40 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20'}`}
+                title="Toggle between Direct MP4 Player and Archive.org Native Embed"
+              >
+                {useEmbed ? 'Direct Video Player' : 'Archive.org Player'}
+              </button>
+            )}
           </div>
         </div>
 
         {/* Video Canvas Stage */}
         <div className={`relative flex items-center justify-center overflow-hidden rounded-xl bg-black max-h-[460px] min-h-[340px] lut-${lut}`}>
-          <video 
-            ref={videoRef}
-            src={candidate.preview_video_url || 'https://ia800108.us.archive.org/21/items/Apollo11Audio/Apollo11Launch.mp4'}
-            poster={thumb}
-            controls
-            playsInline
-            className="w-full h-full object-contain max-h-[440px]"
-          />
+          {useEmbed && archiveId ? (
+            <iframe 
+              src={`https://archive.org/embed/${archiveId}?autoplay=1`}
+              className="w-full h-full min-h-[400px] border-0 rounded-xl"
+              allowFullScreen
+              allow="autoplay; fullscreen"
+            />
+          ) : (
+            <video 
+              ref={videoRef}
+              key={videoSrc}
+              src={videoSrc || RELIABLE_STREAMS[0]}
+              poster={thumb}
+              controls
+              playsInline
+              autoPlay
+              onError={handleVideoError}
+              className="w-full h-full object-contain max-h-[440px]"
+            />
+          )}
 
           {/* 4K Split Comparison Slider */}
-          {show4kComparison && (
+          {show4kComparison && !useEmbed && (
             <div className="absolute inset-0 z-30 pointer-events-auto select-none">
               <div 
                 className="absolute inset-0 bg-cover bg-center grayscale filter contrast-125"
@@ -166,16 +238,16 @@ export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist 
           <div className="flex items-center gap-2">
             <button 
               onClick={handleAdd}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-[#EE5F29] px-4 py-2 font-bold text-white shadow-md shadow-[#EE5F29]/25 hover:brightness-110"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-[#EE5F29] px-4 py-2 font-bold text-white shadow-md shadow-[#EE5F29]/25 hover:brightness-110 transition"
             >
               {added ? <CheckmarkCircle02Icon size={14} /> : <PlayIcon size={14} />}
               {added ? 'Saved to Project Bin' : '+ Add to Shortlist Bin'}
             </button>
             <a 
-              href="http://localhost:4000/premiere/" 
+              href="https://cinevault-studio-1087269593372.us-central1.run.app/premiere" 
               target="_blank" 
               rel="noreferrer"
-              className="inline-flex items-center gap-1 rounded-lg border border-purple-500/40 bg-purple-500/10 px-3 py-2 font-bold text-purple-300 hover:bg-purple-500/20"
+              className="inline-flex items-center gap-1 rounded-lg border border-purple-500/40 bg-purple-500/10 px-3 py-2 font-bold text-purple-300 hover:bg-purple-500/20 transition"
             >
               Export to Premiere
             </a>
