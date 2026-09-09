@@ -22,8 +22,8 @@ async function runComprehensiveAudit() {
   const surfaces = [
     { path: '/', name: 'Public Landing Page' },
     { path: '/dashboard', name: 'Studio Workspace Dashboard' },
-    { path: '/premiere', name: 'Adobe Premiere Pro UXP Panel' },
-    { path: '/health', name: 'Server Health Endpoint' }
+    { path: '/premiere/index.html', name: 'Adobe Premiere Pro UXP Panel' },
+    { path: '/api/health', name: 'Server Health Endpoint' }
   ];
 
   for (const s of surfaces) {
