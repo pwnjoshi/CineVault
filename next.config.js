@@ -1,5 +1,7 @@
 const path = require('path');
 
+const API_PORT = process.env.INTERNAL_API_PORT || '5000';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -21,8 +23,9 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-      { source: '/api/:path*', destination: 'http://localhost:4000/api/:path*' },
-      { source: '/premiere/:path*', destination: 'http://localhost:4000/premiere/:path*' }
+      { source: '/api/:path*', destination: `http://127.0.0.1:${API_PORT}/api/:path*` },
+      { source: '/premiere', destination: `http://127.0.0.1:${API_PORT}/premiere/` },
+      { source: '/premiere/:path*', destination: `http://127.0.0.1:${API_PORT}/premiere/:path*` }
     ];
   }
 };
