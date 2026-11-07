@@ -5,8 +5,8 @@ import TelemetryHud from '@/components/TelemetryHud';
 import { ClerkProvider } from '@clerk/nextjs';
 
 export const metadata: Metadata = {
-  title: 'CineVault Studio � Archival & Stock Footage AI Sourcing Agent',
-  description: 'Deconstruct screenplays, source verified historical masters across 15 institutional vaults, and export directly to Premiere Pro and DaVinci Resolve.',
+  title: 'CineVault Studio — Archival Ingest & Rights Clearance',
+  description: 'Search 15 institutional historical vaults, verify 17 U.S.C. § 105 public domain clearance, and export native cutlists directly to Premiere Pro and DaVinci Resolve.',
 };
 
 export default function RootLayout({
@@ -37,7 +37,7 @@ export default function RootLayout({
             }}
           />
         </head>
-        <body className="bg-[#090b10] text-slate-100 antialiased min-h-screen flex flex-col font-sans">
+        <body className="bg-[#0b0c0e] text-slate-100 antialiased min-h-screen flex flex-col font-sans selection:bg-orange-500/20 selection:text-orange-200">
           <Header />
           <div className="flex-1">
             {children}

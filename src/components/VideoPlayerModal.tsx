@@ -63,7 +63,7 @@ export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist 
   if (!candidate) return null;
 
   const handleVideoError = () => {
-    console.warn('[CineVault Player] Primary stream failed to decode, auto-healing with verified CDN archival master...');
+    console.warn('[CineVault Viewfinder] Direct stream decode failed, switching to cached CDN telecine copy...');
     setStreamHealed(true);
     const nextIdx = fallbackIndexRef.current % RELIABLE_STREAMS.length;
     fallbackIndexRef.current = nextIdx + 1;
@@ -83,62 +83,68 @@ export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist 
   const thumb = candidate.thumbnail_url || 'https://archive.org/services/img/Doctorin1946';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md">
-      <div className="flex w-full max-w-5xl flex-col rounded-2xl border border-white/15 bg-[#11141c] p-5 shadow-2xl shadow-black">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md">
+      <div className="flex w-full max-w-5xl flex-col rounded-2xl border border-white/10 bg-[#14161d] p-5 shadow-2xl shadow-black">
         
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
+        <div className="flex items-center justify-between border-b border-white/[0.08] pb-3 mb-3">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono font-extrabold uppercase text-[#EE5F29] tracking-wider">
-                CINEMA VIEWFINDER &bull; 4K TELECINE MASTER
+              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-orange-400">
+                TELECINE MASTER VIEWFINDER
+              </span>
+              <span className="text-[10px] font-mono text-slate-400">
+                &bull; 24.00 fps &bull; {candidate.resolution || '1080p Telecine'}
               </span>
               {streamHealed && (
-                <span className="inline-flex items-center gap-1 rounded bg-emerald-500/20 px-2 py-0.5 text-[9px] font-mono font-bold text-emerald-300 border border-emerald-500/30">
+                <span className="inline-flex items-center gap-1 rounded bg-emerald-500/15 px-2 py-0.5 text-[9px] font-mono font-medium text-emerald-300 border border-emerald-500/25">
                   <Activity01Icon size={10} />
-                  Auto-Healed (CDN Stream)
+                  <span>CDN Telecine Stream</span>
                 </span>
               )}
             </div>
-            <h3 className="text-base font-bold text-white truncate max-w-xl">{candidate.title}</h3>
+            <h3 className="text-base font-semibold text-white truncate max-w-xl mt-0.5">{candidate.title}</h3>
           </div>
           <button 
             onClick={onClose}
             className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white transition"
           >
-            <Cancel01Icon size={18} />
+            <Cancel01Icon size={16} />
           </button>
         </div>
 
         {/* Viewfinder Toolbar */}
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/5 pb-2.5 mb-3 text-xs">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] pb-3 mb-3 text-xs">
+          
+          {/* Aspect Framing */}
           <div className="flex items-center gap-1.5">
-            <span className="text-[11px] font-semibold text-slate-400">Aspect:</span>
+            <span className="text-[11px] font-mono text-slate-400">Framing:</span>
             {(['16-9', '4-3', '239', '185', '9-16'] as const).map(a => (
               <button 
                 key={a} 
                 onClick={() => setAspect(a)}
-                className={`rounded px-2 py-1 text-[11px] font-mono transition ${aspect === a ? 'bg-[#EE5F29] text-white font-bold' : 'bg-white/5 text-slate-300 hover:bg-white/10'}`}
+                className={`rounded px-2 py-1 text-[11px] font-mono transition ${aspect === a ? 'bg-orange-600 text-white font-semibold' : 'bg-white/5 text-slate-300 hover:bg-white/10'}`}
               >
                 {a === '16-9' ? '16:9' : a === '4-3' ? '4:3' : a === '239' ? '2.39:1' : a === '185' ? '1.85:1' : '9:16'}
               </button>
             ))}
           </div>
 
+          {/* Color LUTs & Calibration */}
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-[11px] font-semibold text-slate-400">Emulsion LUT:</span>
+            <span className="text-[11px] font-mono text-slate-400">Emulsion:</span>
             {[
               { key: 'standard', name: 'Raw' },
               { key: 'kodachrome', name: 'Kodachrome 64' },
               { key: 'technicolor', name: 'Technicolor' },
-              { key: 'trix', name: '16mm Tri-X B&W' },
-              { key: 'sepia', name: '1930s Sepia' },
+              { key: 'trix', name: '16mm Tri-X' },
+              { key: 'sepia', name: 'Sepia Nitrate' },
               { key: 'fuji', name: 'Fuji Eterna' },
             ].map(l => (
               <button 
                 key={l.key} 
                 onClick={() => setLut(l.key as any)}
-                className={`rounded px-2 py-1 text-[11px] transition ${lut === l.key ? 'bg-purple-600 text-white font-bold' : 'bg-white/5 text-slate-300 hover:bg-white/10'}`}
+                className={`rounded px-2 py-1 text-[11px] transition ${lut === l.key ? 'bg-purple-600 text-white font-semibold' : 'bg-white/5 text-slate-300 hover:bg-white/10'}`}
               >
                 {l.name}
               </button>
@@ -146,28 +152,28 @@ export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist 
             
             <button 
               onClick={handleExportLut}
-              className="inline-flex items-center gap-1 rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1 text-[11px] font-bold text-amber-300 hover:bg-amber-500/20 transition"
-              title="Download 3D LUT (.cube) for DaVinci Resolve & Premiere"
+              className="inline-flex items-center gap-1 rounded border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-[11px] font-medium text-amber-300 hover:bg-amber-500/20 transition"
+              title="Download 3D LUT (.cube) calibrated for DaVinci Resolve & Premiere Lumetri"
             >
               <Download01Icon size={12} />
-              .cube LUT
+              <span>.cube LUT</span>
             </button>
 
             <button 
               onClick={() => setShow4kComparison(!show4kComparison)}
-              className={`inline-flex items-center gap-1 rounded px-2.5 py-1 text-[11px] font-bold transition ${show4kComparison ? 'bg-sky-500 text-white' : 'border border-sky-500/40 bg-sky-500/10 text-sky-300 hover:bg-sky-500/20'}`}
+              className={`inline-flex items-center gap-1 rounded px-2.5 py-1 text-[11px] font-medium transition ${show4kComparison ? 'bg-sky-600 text-white' : 'border border-sky-500/30 bg-sky-500/10 text-sky-300 hover:bg-sky-500/20'}`}
             >
               <SparklesIcon size={12} />
-              4K AI Restorer
+              <span>A/B Restorer</span>
             </button>
 
             {archiveId && (
               <button
                 onClick={() => setUseEmbed(!useEmbed)}
-                className={`inline-flex items-center gap-1 rounded px-2.5 py-1 text-[11px] font-mono font-bold transition ${useEmbed ? 'bg-indigo-600 text-white' : 'border border-indigo-500/40 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20'}`}
+                className={`inline-flex items-center gap-1 rounded px-2.5 py-1 text-[11px] font-mono transition ${useEmbed ? 'bg-slate-700 text-white' : 'border border-white/10 bg-white/5 text-slate-300 hover:bg-white/10'}`}
                 title="Toggle between Direct MP4 Player and Archive.org Native Embed"
               >
-                {useEmbed ? 'Direct Video Player' : 'Archive.org Player'}
+                {useEmbed ? 'Direct Player' : 'Archive.org Player'}
               </button>
             )}
           </div>
@@ -203,16 +209,16 @@ export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist 
                 className="absolute inset-0 bg-cover bg-center grayscale filter contrast-125"
                 style={{ backgroundImage: `url('${thumb}')`, clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
               >
-                <span className="absolute top-3 left-3 rounded bg-black/70 px-2 py-1 text-[10px] font-mono font-bold text-slate-300">
-                  RAW 480p ARCHIVAL
+                <span className="absolute top-3 left-3 rounded bg-black/75 px-2 py-1 text-[10px] font-mono font-medium text-slate-300 border border-white/10">
+                  RAW A-ROLL TELECINE
                 </span>
               </div>
               <div 
                 className="absolute inset-0 bg-cover bg-center filter saturate-150 contrast-125 brightness-105"
                 style={{ backgroundImage: `url('${thumb}')`, clipPath: `inset(0 0 0 ${sliderPos}%)` }}
               >
-                <span className="absolute top-3 right-3 rounded bg-[#EE5F29] px-2 py-1 text-[10px] font-mono font-bold text-white shadow-lg">
-                  4K AI RESTORED (60FPS)
+                <span className="absolute top-3 right-3 rounded bg-orange-600 px-2 py-1 text-[10px] font-mono font-medium text-white shadow-sm">
+                  CALIBRATED &amp; RESTORED
                 </span>
               </div>
               <input 
@@ -221,35 +227,36 @@ export default function VideoPlayerModal({ candidate, onClose, onAddToShortlist 
                 max="100" 
                 value={sliderPos}
                 onChange={(e) => setSliderPos(Number(e.target.value))}
-                className="absolute inset-x-0 bottom-4 z-40 mx-auto w-3/4 cursor-pointer accent-[#EE5F29]"
+                className="absolute inset-x-0 bottom-4 z-40 mx-auto w-3/4 cursor-pointer accent-orange-500"
               />
             </div>
           )}
         </div>
 
         {/* SMPTE In/Out Trimmer Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-3 mt-3 text-xs">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-3 mt-3 text-xs">
           <div className="flex items-center gap-2 font-mono text-[11px]">
-            <span className="rounded bg-white/5 px-2 py-1 text-slate-400">TIME: <strong className="text-white">00:00:15:00</strong></span>
-            <span className="rounded bg-sky-500/10 px-2 py-1 text-sky-300 border border-sky-500/20">IN: <strong>{tcIn}</strong></span>
-            <span className="rounded bg-rose-500/10 px-2 py-1 text-rose-300 border border-rose-500/20">OUT: <strong>{tcOut}</strong></span>
+            <span className="rounded bg-white/5 px-2 py-1 text-slate-400">PLAYHEAD: <strong className="text-white">00:00:15:00</strong></span>
+            <span className="rounded bg-white/5 px-2 py-1 text-slate-300 border border-white/[0.06]">IN: <strong className="text-orange-400">{tcIn}</strong></span>
+            <span className="rounded bg-white/5 px-2 py-1 text-slate-300 border border-white/[0.06]">OUT: <strong className="text-orange-400">{tcOut}</strong></span>
           </div>
 
           <div className="flex items-center gap-2">
             <button 
               onClick={handleAdd}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-[#EE5F29] px-4 py-2 font-bold text-white shadow-md shadow-[#EE5F29]/25 hover:brightness-110 transition"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-orange-600 px-4 py-2 font-semibold text-white shadow-sm hover:bg-orange-500 transition"
             >
               {added ? <CheckmarkCircle02Icon size={14} /> : <PlayIcon size={14} />}
-              {added ? 'Saved to Project Bin' : '+ Add to Shortlist Bin'}
+              <span>{added ? 'In Project Bin' : '+ Save to Project Bin'}</span>
             </button>
             <a 
-              href="https://cinevault-studio-1087269593372.us-central1.run.app/premiere" 
+              href="/premiere/index.html" 
               target="_blank" 
               rel="noreferrer"
-              className="inline-flex items-center gap-1 rounded-lg border border-purple-500/40 bg-purple-500/10 px-3 py-2 font-bold text-purple-300 hover:bg-purple-500/20 transition"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-2 font-semibold text-purple-300 hover:bg-purple-500/20 transition"
             >
-              Export to Premiere
+              <span className="font-mono text-purple-400 font-bold text-[10px]">Pr</span>
+              <span>Send to Premiere Pro</span>
             </a>
           </div>
         </div>

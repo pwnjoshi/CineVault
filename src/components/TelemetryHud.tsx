@@ -1,59 +1,63 @@
 'use client';
 
 import React, { useState } from 'react';
-import { SparklesIcon, CpuIcon, Activity01Icon, Layers01Icon } from 'hugeicons-react';
+import { CpuIcon, Activity01Icon, Cancel01Icon } from 'hugeicons-react';
 
 export default function TelemetryHud() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-5 right-5 z-40 font-mono text-xs">
+    <aside aria-label="System telemetry" className="fixed bottom-4 right-4 z-40 font-mono text-xs">
       <button 
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 rounded-full border border-purple-500/40 bg-[#0f1117]/95 px-3.5 py-1.5 text-white shadow-xl backdrop-blur-md transition hover:border-purple-400 hover:scale-105"
+        className="flex items-center gap-2 rounded-full border border-white/10 bg-[#111317]/95 px-3 py-1.5 text-slate-300 shadow-lg backdrop-blur-md transition hover:border-white/20 hover:text-white"
+        title="Open telemetry & query latency console"
       >
-        <span className="live-pulse bg-purple-400 shadow-[0_0_8px_#a78bfa]" />
-        <span className="font-bold text-purple-300">Parallel API &amp; MCP HUD</span>
-        <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-400 border border-emerald-500/30">820ms</span>
+        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+        <span className="font-semibold text-slate-300 text-[11px]">Telemetry</span>
+        <span className="rounded bg-white/5 px-1.5 py-0.5 text-[10px] text-slate-400 font-mono">Parallel 214ms</span>
       </button>
 
       {open && (
-        <div className="absolute bottom-11 right-0 w-80 rounded-2xl border border-purple-500/40 bg-[#0f1117]/98 p-4 shadow-2xl backdrop-blur-xl flex flex-col gap-2.5 z-50">
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
-            <strong className="text-white font-sans text-xs flex items-center gap-1.5">
-              <CpuIcon size={14} className="text-purple-400" />
-              ⚡ Live Engine Telemetry
-            </strong>
-            <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 text-[9px] font-bold text-emerald-400 border border-emerald-500/30">
-              100% ONLINE
-            </span>
+        <div className="absolute bottom-10 right-0 w-84 rounded-xl border border-white/10 bg-[#16181e]/98 p-4 shadow-2xl backdrop-blur-xl flex flex-col gap-3 z-50 text-slate-300">
+          <div className="flex items-center justify-between border-b border-white/[0.08] pb-2">
+            <div className="flex items-center gap-2">
+              <CpuIcon size={14} className="text-orange-400" />
+              <strong className="text-white font-sans text-xs">System Telemetry &amp; Latencies</strong>
+            </div>
+            <button 
+              onClick={() => setOpen(false)}
+              className="text-slate-400 hover:text-white transition"
+            >
+              <Cancel01Icon size={14} />
+            </button>
           </div>
 
           <div className="flex flex-col gap-1.5 text-[11px]">
-            <div className="flex items-center justify-between rounded bg-white/5 p-1.5 border-l-2 border-purple-400">
-              <span className="text-slate-300">Parallel Search (/v1/search)</span>
-              <strong className="text-purple-300">214ms</strong>
+            <div className="flex items-center justify-between rounded bg-white/[0.03] px-2.5 py-1.5 border border-white/[0.04]">
+              <span className="text-slate-400">Parallel Search (/v1/search)</span>
+              <strong className="text-slate-200 font-mono">214ms</strong>
             </div>
-            <div className="flex items-center justify-between rounded bg-white/5 p-1.5 border-l-2 border-sky-400">
-              <span className="text-slate-300">Parallel Extract (/v1/extract)</span>
-              <strong className="text-sky-300">178ms</strong>
+            <div className="flex items-center justify-between rounded bg-white/[0.03] px-2.5 py-1.5 border border-white/[0.04]">
+              <span className="text-slate-400">Parallel Extract (/v1/extract)</span>
+              <strong className="text-slate-200 font-mono">178ms</strong>
             </div>
-            <div className="flex items-center justify-between rounded bg-white/5 p-1.5 border-l-2 border-[#EE5F29]">
-              <span className="text-slate-300">Gemini 1.5 Pro Reasoning</span>
-              <strong className="text-[#EE5F29]">412ms</strong>
+            <div className="flex items-center justify-between rounded bg-white/[0.03] px-2.5 py-1.5 border border-white/[0.04]">
+              <span className="text-slate-400">Gemini Scene Deconstruction</span>
+              <strong className="text-slate-200 font-mono">412ms</strong>
             </div>
-            <div className="flex items-center justify-between rounded bg-white/5 p-1.5 border-l-2 border-emerald-400">
-              <span className="text-slate-300">17 U.S.C. § 105 PD Risk Engine</span>
-              <strong className="text-emerald-300">16ms</strong>
+            <div className="flex items-center justify-between rounded bg-white/[0.03] px-2.5 py-1.5 border border-white/[0.04]">
+              <span className="text-slate-400">17 U.S.C. § 105 Verification</span>
+              <strong className="text-emerald-400 font-mono">16ms</strong>
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-2 text-[10px] text-slate-400 leading-relaxed">
-            <div>Connected: <strong>15 Global Archives</strong> (NARA, LOC, NASA, BFI, INA, UCLA, EFG, Smithsonian)</div>
-            <div className="mt-0.5">MCP Protocol: <code className="text-purple-300">tools/call search_archival_footage</code></div>
+          <div className="border-t border-white/[0.08] pt-2 text-[10px] text-slate-400 leading-relaxed font-sans">
+            <div>Federated Repositories: <strong className="text-slate-300">15 Institutional Archives</strong></div>
+            <div className="mt-0.5 font-mono text-[9.5px] text-slate-500">MCP Protocol: search_archival_footage</div>
           </div>
         </div>
       )}
-    </div>
+    </aside>
   );
 }

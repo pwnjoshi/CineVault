@@ -3,20 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --bg-app: #090b10;
-  --bg-card: #11141c;
-  --bg-surface: #181b24;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --accent-orange: #EE5F29;
-  --accent-cyan: #38bdf8;
-  --accent-purple: #a78bfa;
-  --accent-emerald: #34d399;
-  --accent-amber: #fbbf24;
+  --studio-bg: #f8fafc;
+  --studio-surface: #ffffff;
+  --studio-card: #ffffff;
+  --studio-card-hover: #f1f5f9;
+  --studio-border: rgba(15, 23, 42, 0.08);
+  --studio-border-strong: rgba(15, 23, 42, 0.16);
+  --studio-accent: #ea580c;
+  --studio-accent-hover: #c2410c;
+}
+
+.dark {
+  --studio-bg: #0b0c0e;
+  --studio-surface: #111317;
+  --studio-card: #16181e;
+  --studio-card-hover: #1c1f26;
+  --studio-border: rgba(255, 255, 255, 0.08);
+  --studio-border-strong: rgba(255, 255, 255, 0.16);
+  --studio-accent: #f97316;
+  --studio-accent-hover: #fb923c;
 }
 
 body {
-  background-color: var(--bg-app);
-  color: #f8fafc;
+  background-color: #0b0c0e;
+  color: #f1f5f9;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
@@ -33,41 +43,49 @@ html.light body {
 html:not(.dark) header,
 html.light header {
   background-color: rgba(255, 255, 255, 0.95) !important;
-  border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
 }
 
 html:not(.dark) .bg-\[\#11141c\],
 html.light .bg-\[\#11141c\],
+html:not(.dark) .bg-\[\#16181e\],
+html.light .bg-\[\#16181e\],
 html:not(.dark) .bg-\[\#11141c\]\/80,
 html.light .bg-\[\#11141c\]\/80,
 html:not(.dark) .bg-\[\#11141c\]\/60,
 html.light .bg-\[\#11141c\]\/60 {
   background-color: #ffffff !important;
   border-color: rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02) !important;
 }
 
 html:not(.dark) .bg-\[\#090b10\],
 html.light .bg-\[\#090b10\],
+html:not(.dark) .bg-\[\#0b0c0e\],
+html.light .bg-\[\#0b0c0e\],
 html:not(.dark) .bg-\[\#0a0c12\],
 html.light .bg-\[\#0a0c12\] {
   background-color: #f8fafc !important;
 }
 
-/* Gradients in Light Mode */
+/* Light Mode Gradients */
 html:not(.dark) .from-\[\#11141c\],
-html.light .from-\[\#11141c\] {
+html.light .from-\[\#11141c\],
+html:not(.dark) .from-\[\#16181e\],
+html.light .from-\[\#16181e\] {
   --tw-gradient-from: #ffffff var(--tw-gradient-from-position) !important;
   --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position) !important;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 
 html:not(.dark) .to-\[\#0a0c12\],
-html.light .to-\[\#0a0c12\] {
+html.light .to-\[\#0a0c12\],
+html:not(.dark) .to-\[\#0b0c0e\],
+html.light .to-\[\#0b0c0e\] {
   --tw-gradient-to: #f1f5f9 var(--tw-gradient-to-position) !important;
 }
 
-/* Base text hierarchy in light mode */
+/* Text Hierarchy in Light Mode */
 html:not(.dark) .text-white,
 html.light .text-white {
   color: #0f172a;
@@ -93,7 +111,7 @@ html.light .text-slate-400 {
   color: #64748b;
 }
 
-/* Subtle border and surface tints in light mode */
+/* Borders in Light Mode */
 html:not(.dark) .border-white\/5,
 html:not(.dark) .border-white\/10,
 html:not(.dark) .border-white\/15,
@@ -133,11 +151,15 @@ html.light input::placeholder {
   color: #94a3b8 !important;
 }
 
-/* CRITICAL: Protect Solid Accent Buttons and Badges so text stays white */
+/* Ensure solid action buttons preserve crisp white text in Light Mode */
 html:not(.dark) .bg-\[\#EE5F29\],
 html.light .bg-\[\#EE5F29\],
 html:not(.dark) .bg-\[\#EE5F29\] *,
 html.light .bg-\[\#EE5F29\] *,
+html:not(.dark) .bg-orange-600,
+html.light .bg-orange-600,
+html:not(.dark) .bg-orange-600 *,
+html.light .bg-orange-600 *,
 html:not(.dark) .bg-emerald-600,
 html.light .bg-emerald-600,
 html:not(.dark) .bg-emerald-600 *,
@@ -157,11 +179,13 @@ html.light .bg-indigo-600 * {
   color: #ffffff !important;
 }
 
-/* CRITICAL: Cinema Viewfinder and Legal Certificate Modals remain in dark cinema mode */
+/* Cinema Viewfinder & Legal Modals: Maintain Theatre Black Stage */
 html:not(.dark) .fixed.inset-0.z-50 .bg-\[\#11141c\],
-html.light .fixed.inset-0.z-50 .bg-\[\#11141c\] {
+html.light .fixed.inset-0.z-50 .bg-\[\#11141c\],
+html:not(.dark) .fixed.inset-0.z-50 .bg-\[\#16181e\],
+html.light .fixed.inset-0.z-50 .bg-\[\#16181e\] {
   background-color: #11141c !important;
-  border-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
   color: #f8fafc !important;
 }
 
@@ -184,23 +208,23 @@ html:not(.dark) .fixed.inset-0.z-50 .border-white\/10,
 html:not(.dark) .fixed.inset-0.z-50 .border-white\/15,
 html.light .fixed.inset-0.z-50 .border-white\/10,
 html.light .fixed.inset-0.z-50 .border-white\/15 {
-  border-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
 }
 
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 3px;
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(148, 163, 184, 0.35);
 }
 
 /* Film Emulsion LUT Shaders */
@@ -214,19 +238,6 @@ html.light .fixed.inset-0.z-50 .border-white\/15 {
 /* 4K AI Restorer Filter */
 .ai-4k-enhanced {
   filter: contrast(1.25) saturate(1.2) brightness(1.05) drop-shadow(0 0 16px rgba(56, 189, 248, 0.45)) !important;
-}
-
-/* Live Pulse Animation */
-@keyframes pulseGlow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.15); }
-}
-.live-pulse {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  animation: pulseGlow 1.8s infinite ease-in-out;
 }
 
 /* Print Certificate Rules */

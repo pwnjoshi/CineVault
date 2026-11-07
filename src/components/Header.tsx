@@ -5,12 +5,10 @@ import Link from 'next/link';
 import { UserSession } from '@/lib/types';
 import { 
   Film01Icon, 
-  SparklesIcon, 
-  Settings01Icon, 
   PlayIcon, 
-  UserCircleIcon,
   Moon02Icon,
-  Sun01Icon
+  Sun01Icon,
+  UserCircleIcon
 } from 'hugeicons-react';
 
 export default function Header() {
@@ -63,7 +61,7 @@ export default function Header() {
       email: 'joshipawan2021@gmail.com',
       avatar: 'PJ',
       role: 'LEAD_EDITOR',
-      roleTitle: 'Lead Film Editor & Colorist',
+      roleTitle: 'Lead Archival Editor & Colorist',
       token: 'token_demo_lead_editor_active',
       provider: 'demo'
     };
@@ -78,82 +76,82 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-white/10 bg-[#090b10]/95 px-6 py-3 backdrop-blur-md">
+    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-white/[0.08] bg-[#0b0c0e]/95 px-6 py-3 backdrop-blur-md transition-colors">
       {/* Brand Identity */}
       <div className="flex items-center gap-4">
-        <Link href="/" className="flex items-center gap-2.5 text-white no-underline transition hover:opacity-90">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#EE5F29] text-white shadow-lg shadow-[#EE5F29]/30">
-            <Film01Icon size={20} />
+        <Link href="/" className="flex items-center gap-2.5 text-white no-underline transition hover:opacity-95">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-600 text-white shadow-sm">
+            <Film01Icon size={18} />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-extrabold tracking-wider text-white text-base">CINEVAULT</span>
-              <span className="rounded bg-[#EE5F29]/20 px-1.5 py-0.5 text-[9px] font-extrabold tracking-wider text-[#EE5F29] border border-[#EE5F29]/40">STUDIO</span>
+              <span className="font-bold tracking-tight text-white text-base">CineVault</span>
+              <span className="rounded bg-orange-500/15 px-1.5 py-0.5 text-[10px] font-mono font-bold tracking-wider text-orange-400 border border-orange-500/25">STUDIO</span>
             </div>
           </div>
         </Link>
-        <div className="hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-300 font-mono">
-          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>15 Institutional Vaults &bull; 100% Cleared</span>
+        <div className="hidden lg:flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] text-slate-400 font-mono">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span>15 Institutional Vaults &bull; Public Domain Provenance</span>
         </div>
       </div>
 
       {/* Nav Actions & Profile */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2.5">
         <button 
           onClick={toggleTheme}
-          className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-300 transition hover:border-white/20 hover:text-white"
-          title="Toggle Theme"
+          className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-slate-400 transition hover:border-white/20 hover:text-white"
+          title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+          aria-label="Toggle Theme"
         >
-          {theme === 'dark' ? <Sun01Icon size={14} /> : <Moon02Icon size={14} />}
-          <span>{theme === 'dark' ? 'Light' : 'Dark'}</span>
+          {theme === 'dark' ? <Sun01Icon size={15} /> : <Moon02Icon size={15} />}
         </button>
 
         <Link 
           href="/"
-          className="hidden sm:inline-flex rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:border-white/20 hover:text-white"
+          className="hidden sm:inline-flex rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:border-white/20 hover:text-white"
         >
           Overview
         </Link>
 
         <Link 
           href="/dashboard"
-          className="inline-flex items-center gap-1.5 rounded-lg bg-[#EE5F29] px-3.5 py-1.5 text-xs font-bold text-white shadow-md shadow-[#EE5F29]/25 transition hover:brightness-110"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-orange-600 px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm transition hover:bg-orange-500"
         >
           <PlayIcon size={13} />
-          Studio Workspace
+          <span>Studio Workspace</span>
         </Link>
 
         <a 
-          href="http://localhost:4000/premiere/" 
+          href="/premiere/index.html" 
           target="_blank" 
           rel="noreferrer"
-          className="hidden md:inline-flex items-center gap-1.5 rounded-lg border border-purple-500/40 bg-purple-500/10 px-3 py-1.5 text-xs font-bold text-purple-300 transition hover:bg-purple-500/20"
+          className="hidden md:inline-flex items-center gap-1.5 rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-1.5 text-xs font-medium text-purple-300 transition hover:bg-purple-500/20"
         >
-          <span className="font-mono font-bold text-[11px] text-purple-400">Pr</span>
-          Premiere Panel
+          <span className="font-mono font-bold text-[10px] text-purple-400">Pr</span>
+          <span>Premiere Panel</span>
         </a>
 
-        {/* 1-Click Demo Lead Editor or Profile */}
+        {/* Demo Editor Profile */}
         {user ? (
           <div className="relative">
             <button 
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 p-1.5 pr-3 text-xs text-white transition hover:border-white/20"
+              className="flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] p-1 pr-2.5 text-xs text-white transition hover:border-white/20"
             >
-              <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#EE5F29] font-bold text-white text-[11px]">
+              <div className="flex h-6 w-6 items-center justify-center rounded-md bg-orange-600 font-bold text-white text-[10px]">
                 {user.avatar || 'PJ'}
               </div>
-              <span className="font-medium hidden sm:inline">{user.name}</span>
+              <span className="font-medium hidden sm:inline text-xs">{user.name}</span>
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-56 rounded-xl border border-white/15 bg-[#11141c] p-2 shadow-2xl shadow-black/80 z-50">
+              <div className="absolute right-0 mt-2 w-56 rounded-xl border border-white/15 bg-[#16181e] p-2 shadow-2xl shadow-black/80 z-50 font-sans">
                 <div className="border-b border-white/10 px-3 py-2 text-xs">
                   <div className="font-bold text-white">{user.name}</div>
                   <div className="text-[11px] text-slate-400 font-mono truncate">{user.email}</div>
-                  <div className="mt-1 inline-block rounded bg-emerald-500/20 px-1.5 py-0.5 text-[9px] font-bold text-emerald-300 border border-emerald-500/30">
-                    {user.roleTitle || 'Lead Film Editor'}
+                  <div className="mt-1 inline-block rounded bg-emerald-500/15 px-1.5 py-0.5 text-[9px] font-mono text-emerald-300 border border-emerald-500/25">
+                    {user.roleTitle || 'Lead Archival Editor'}
                   </div>
                 </div>
                 <button 
@@ -168,10 +166,10 @@ export default function Header() {
         ) : (
           <button 
             onClick={loginDemo}
-            className="flex items-center gap-1 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-1.5 text-xs font-bold text-emerald-300 transition hover:bg-emerald-500/20"
+            className="flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:border-white/20 hover:text-white"
           >
-            <SparklesIcon size={14} />
-            ⚡ Demo Editor
+            <UserCircleIcon size={14} className="text-slate-400" />
+            <span>Editor Profile</span>
           </button>
         )}
       </div>

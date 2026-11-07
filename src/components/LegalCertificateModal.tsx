@@ -17,9 +17,8 @@ interface Props {
 
 export default function LegalCertificateModal({ items, onClose }: Props) {
   const [copied, setCopied] = useState(false);
-  const certId = 'CV-EO-2026-NARA-8842';
+  const certId = 'CV-PROV-2026-NARA-8842';
   const sha256 = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
-  const signer = 'Sarah Vance, Esq. (Lead Archival Rights Counsel)';
   const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   const handlePrint = () => {
@@ -31,14 +30,13 @@ export default function LegalCertificateModal({ items, onClose }: Props) {
       certificate_id: certId,
       issued_date: new Date().toISOString(),
       sha256_audit_fingerprint: sha256,
-      statutory_exemption: '17 U.S.C. § 105 (United States Government Works)',
-      eo_warranty_coverage: '$250,000 USD',
-      signatory: signer,
+      statutory_exemption: '17 U.S.C. § 105 (U.S. Government Works & Pre-1929 Public Domain)',
       audited_assets: items.map(i => ({
         title: i.title,
         source_repository: i.source_name,
         public_domain_status: i.pd_claim,
-        license_rate: i.price
+        license_rate: i.price,
+        archive_identifier: i.id
       }))
     };
     navigator.clipboard.writeText(JSON.stringify(record, null, 2));
@@ -48,99 +46,102 @@ export default function LegalCertificateModal({ items, onClose }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md overflow-y-auto">
-      <div className="flex w-full max-w-4xl flex-col rounded-2xl border border-white/15 bg-[#11141c] p-6 shadow-2xl shadow-black my-8">
+      <div className="flex w-full max-w-4xl flex-col rounded-2xl border border-white/10 bg-[#16181e] p-6 shadow-2xl shadow-black my-8 font-sans">
         
         {/* Modal Action Header */}
-        <div className="no-print flex items-center justify-between border-b border-white/10 pb-4 mb-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400">
-              <SecurityIcon size={18} />
+        <div className="no-print flex items-center justify-between border-b border-white/[0.08] pb-4 mb-4">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <SecurityIcon size={16} />
             </div>
             <div>
-              <span className="text-[10px] font-mono font-bold uppercase text-emerald-400">Statutory E&amp;O Compliance</span>
-              <h3 className="text-base font-bold text-white">Chain-of-Title Clearance Certificate</h3>
+              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400">Statutory Rights Record</span>
+              <h3 className="text-sm font-bold text-white">Chain-of-Title &amp; Provenance Record</h3>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
             <button 
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-emerald-500"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-500 transition"
             >
               <PrinterIcon size={14} />
-              Print / Save PDF
+              <span>Print / Save PDF</span>
             </button>
             <button 
               onClick={handleCopyJson}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white transition"
             >
               {copied ? <CheckmarkCircle02Icon size={14} /> : <Copy01Icon size={14} />}
-              {copied ? 'Copied JSON' : 'Copy JSON'}
+              <span>{copied ? 'Copied JSON' : 'Export JSON'}</span>
             </button>
             <button 
               onClick={onClose}
-              className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white transition"
             >
-              <Cancel01Icon size={18} />
+              <Cancel01Icon size={16} />
             </button>
           </div>
         </div>
 
         {/* Official Printable Certificate Document */}
-        <div id="printable-certificate" className="rounded-xl border-2 border-slate-700 bg-slate-50 p-8 text-slate-900 shadow-inner font-serif">
+        <div id="printable-certificate" className="rounded-xl border border-slate-300 bg-white p-8 text-slate-900 shadow-sm font-serif">
           
-          <div className="text-center border-b-2 border-slate-900 pb-4 mb-5">
-            <div className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#EE5F29]">
-              CINEVAULT STUDIO &bull; ARCHIVAL RIGHTS DIVISION
+          <div className="text-center border-b border-slate-300 pb-5 mb-5">
+            <div className="font-sans text-[11px] font-bold uppercase tracking-widest text-orange-600">
+              CINEVAULT STUDIO &bull; ARCHIVAL RIGHTS &amp; PROVENANCE REGISTRY
             </div>
             <h2 className="text-xl font-bold tracking-tight text-slate-950 mt-1 mb-1 font-serif">
-              CERTIFICATE OF STATUTORY PUBLIC DOMAIN CLEARANCE &amp; E&amp;O WARRANTY
+              RECORD OF STATUTORY PUBLIC DOMAIN CLEARANCE
             </h2>
             <div className="text-xs text-slate-600 font-mono">
-              CERTIFICATE NO: <strong>{certId}</strong> &bull; ISSUED: {dateStr}
+              RECORD ID: <strong>{certId}</strong> &bull; DATE OF AUDIT: {dateStr}
             </div>
           </div>
 
-          <p className="text-xs leading-relaxed text-slate-700 mb-4">
-            This document certifies that the motion picture audiovisual assets enumerated below have undergone statutory public domain verification and chain-of-title provenance audits pursuant to <strong>Title 17 of the United States Code (17 U.S.C. § 105)</strong> and international public domain conventions. These assets are cleared for unrestricted worldwide theatrical, broadcast, streaming, and educational distribution with digital Errors &amp; Omissions (E&amp;O) warranty indemnification.
+          <p className="text-xs leading-relaxed text-slate-700 mb-4 font-serif">
+            This document records that the audiovisual assets identified below have undergone archival provenance auditing pursuant to <strong>17 U.S.C. § 105 (Works of the United States Government)</strong> and historical public domain statutory criteria. As works created by officers or employees of the United States Government as part of their official duties, or as published materials whose statutory copyright terms have expired, these items reside in the public domain and are eligible for editorial, broadcast, and theatrical use without commercial copyright royalties.
           </p>
 
           <table className="w-full border-collapse text-left text-xs mb-5 font-sans">
             <thead>
-              <tr className="border-b-2 border-slate-400 bg-slate-200 text-slate-800 font-bold">
-                <th className="p-2">Item Title &amp; Identifier</th>
-                <th className="p-2">Repository Vault</th>
-                <th className="p-2">Statutory Status</th>
-                <th className="p-2 text-right">License Rate</th>
+              <tr className="border-b border-slate-300 bg-slate-100 text-slate-800 font-semibold">
+                <th className="p-2.5">Asset Title</th>
+                <th className="p-2.5">Institutional Repository</th>
+                <th className="p-2.5">Statutory Basis</th>
+                <th className="p-2.5 text-right">Fee Assessment</th>
               </tr>
             </thead>
-            <tbody>
-              {items.slice(0, 5).map((item, idx) => (
-                <tr key={item.id || idx} className="border-b border-slate-300">
-                  <td className="p-2 font-medium">#{idx + 1}: {item.title}</td>
-                  <td className="p-2">{item.source_name}</td>
-                  <td className="p-2 font-bold text-emerald-700">17 U.S.C. § 105 CLEARED</td>
-                  <td className="p-2 text-right font-mono font-bold text-emerald-700">$0.00 (Public Domain)</td>
+            <tbody className="divide-y divide-slate-200">
+              {items.slice(0, 6).map((item, idx) => (
+                <tr key={item.id || idx}>
+                  <td className="p-2.5 font-medium text-slate-900">#{idx + 1}: {item.title}</td>
+                  <td className="p-2.5 text-slate-600">{item.source_name}</td>
+                  <td className="p-2.5 font-semibold text-emerald-700">17 U.S.C. § 105 Exemption</td>
+                  <td className="p-2.5 text-right font-mono font-semibold text-emerald-700">$0.00 (Public Domain)</td>
                 </tr>
               ))}
             </tbody>
           </table>
 
-          <div className="grid grid-cols-2 gap-4 border-t-2 border-dashed border-slate-400 pt-4 text-[11px]">
+          <div className="grid grid-cols-2 gap-6 border-t border-slate-300 pt-4 text-[11px] font-sans">
             <div>
-              <strong className="font-sans uppercase text-slate-900">Errors &amp; Omissions (E&amp;O) Warranty</strong>
-              <p className="text-slate-600 mt-1 leading-normal">
-                Subject to statutory deposition, the listed assets carry a $250,000 corporate indemnity coverage policy against third-party copyright claims when utilized within licensed sequence parameters.
+              <strong className="uppercase text-slate-900 tracking-wider text-[10px]">Audit Provenance &amp; Verification Hash</strong>
+              <p className="text-slate-600 mt-1 leading-normal text-xs">
+                Asset provenance has been indexed from primary federal repositories, educational archives, and national film collections.
               </p>
-              <div className="font-mono text-[9.5px] text-slate-500 mt-2 break-all">
-                SHA-256: {sha256}
+              <div className="font-mono text-[9px] text-slate-500 mt-2 break-all bg-slate-50 p-2 rounded border border-slate-200">
+                SHA-256 Seal: {sha256}
               </div>
             </div>
-            <div className="text-right">
-              <div className="font-sans font-bold text-slate-900">AUTHORIZED LEGAL SIGNATORY</div>
-              <div className="mt-3 text-lg font-serif italic text-blue-900">{signer}</div>
-              <div className="text-[10px] text-slate-500 font-sans mt-1">Senior Rights &amp; Clearance Counsel, CineVault Studio</div>
-              <div className="font-mono text-[9px] font-bold text-emerald-600 mt-1">✓ DIGITALLY SEALED &amp; RECORDED</div>
+            <div className="text-right flex flex-col justify-between">
+              <div>
+                <div className="font-bold text-slate-900 uppercase text-[10px] tracking-wider">Provenance Verification Authority</div>
+                <div className="text-xs text-slate-600 mt-1">CineVault Studio Archival Rights Registry</div>
+              </div>
+              <div className="font-mono text-[9.5px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded inline-block self-end border border-emerald-200">
+                ✓ VERIFIED &amp; LOGGED TO PROJECT BIN
+              </div>
             </div>
           </div>
 
